@@ -31,7 +31,6 @@ import com.xwray.groupie.GroupieAdapter
 import eu.kanade.tachiyomi.util.system.getSerializableCompat
 import kotlinx.coroutines.launch
 
-
 class NotificationFragment : Fragment() {
     private lateinit var type: NotificationType
     private var getID: Int = -1
@@ -207,7 +206,6 @@ class NotificationFragment : Fragment() {
             ContextCompat.startActivity(requireContext(), it, null)
         }
     }
-
 
     override fun onResume() {
         super.onResume()

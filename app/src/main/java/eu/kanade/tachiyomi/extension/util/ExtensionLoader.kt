@@ -8,8 +8,8 @@ import androidx.core.content.pm.PackageInfoCompat
 import ani.dantotsu.connections.crashlytics.CrashlyticsInterface
 import ani.dantotsu.media.MediaType
 import ani.dantotsu.parsers.NovelInterface
-import ani.dantotsu.parsers.novel.NovelExtension
-import ani.dantotsu.parsers.novel.NovelLoadResult
+// removed: AnimeExtension
+// removed: NovelLoadResult
 import ani.dantotsu.util.Logger
 import dalvik.system.PathClassLoader
 import eu.kanade.domain.source.service.SourcePreferences
@@ -18,8 +18,7 @@ import eu.kanade.tachiyomi.animesource.AnimeSource
 import eu.kanade.tachiyomi.animesource.AnimeSourceFactory
 import eu.kanade.tachiyomi.extension.anime.model.AnimeExtension
 import eu.kanade.tachiyomi.extension.anime.model.AnimeLoadResult
-import eu.kanade.tachiyomi.extension.manga.model.MangaExtension
-import eu.kanade.tachiyomi.extension.manga.model.MangaLoadResult
+// removed: import eu.kanade.tachiyomi.extension.anime.model.MangaLoadResult
 import eu.kanade.tachiyomi.source.CatalogueSource
 import eu.kanade.tachiyomi.source.MangaSource
 import eu.kanade.tachiyomi.source.SourceFactory
@@ -81,7 +80,6 @@ internal object ExtensionLoader {
     fun loadAnimeExtensions(context: Context): List<AnimeLoadResult> {
         val pkgManager = context.packageManager
 
-
         val installedPkgs = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             pkgManager.getInstalledPackages(PackageManager.PackageInfoFlags.of(PACKAGE_FLAGS.toLong()))
         } else {
@@ -101,7 +99,7 @@ internal object ExtensionLoader {
         }
     }
 
-    fun loadMangaExtensions(context: Context): List<MangaLoadResult> {
+    fun loadAnimeExtensions(context: Context): List<MangaLoadResult> {
         val pkgManager = context.packageManager
 
         val installedPkgs = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -117,13 +115,13 @@ internal object ExtensionLoader {
         // Load each extension concurrently and wait for completion
         return runBlocking {
             val deferred = extPkgs.map {
-                async { loadMangaExtension(context, it.packageName, it) }
+                async { loadAnimeExtension(context, it.packageName, it) }
             }
             deferred.map { it.await() }
         }
     }
 
-    fun loadNovelExtensions(context: Context): List<NovelLoadResult> {
+    fun loadAnimeExtensions(context: Context): List<NovelLoadResult> {
         val pkgManager = context.packageManager
 
         val installedPkgs = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -139,7 +137,7 @@ internal object ExtensionLoader {
         // Load each extension concurrently and wait for completion
         return runBlocking {
             val deferred = extPkgs.map {
-                async { loadNovelExtension(context, it.packageName, it) }
+                async { loadAnimeExtension(context, it.packageName, it) }
             }
             deferred.map { it.await() }
         }
@@ -164,7 +162,7 @@ internal object ExtensionLoader {
         return loadAnimeExtension(context, pkgName, pkgInfo)
     }
 
-    fun loadMangaExtensionFromPkgName(context: Context, pkgName: String): MangaLoadResult {
+    fun loadAnimeExtensionFromPkgName(context: Context, pkgName: String): MangaLoadResult {
         val pkgInfo = try {
             context.packageManager.getPackageInfo(pkgName, PACKAGE_FLAGS)
         } catch (error: PackageManager.NameNotFoundException) {
@@ -176,10 +174,10 @@ internal object ExtensionLoader {
             Logger.log("Tried to load a package that wasn't a extension ($pkgName)")
             return MangaLoadResult.Error
         }
-        return loadMangaExtension(context, pkgName, pkgInfo)
+        return loadAnimeExtension(context, pkgName, pkgInfo)
     }
 
-    fun loadNovelExtensionFromPkgName(context: Context, pkgName: String): NovelLoadResult {
+    fun loadAnimeExtensionFromPkgName(context: Context, pkgName: String): NovelLoadResult {
         val pkgInfo = try {
             context.packageManager.getPackageInfo(pkgName, PACKAGE_FLAGS)
         } catch (error: PackageManager.NameNotFoundException) {
@@ -191,7 +189,7 @@ internal object ExtensionLoader {
             Logger.log("Tried to load a package that wasn't a extension ($pkgName)")
             return NovelLoadResult.Error(Exception("Tried to load a package that wasn't a extension ($pkgName)"))
         }
-        return loadNovelExtension(context, pkgName, pkgInfo)
+        return loadAnimeExtension(context, pkgName, pkgInfo)
     }
 
     /**
@@ -304,7 +302,7 @@ internal object ExtensionLoader {
         return AnimeLoadResult.Success(extension)
     }
 
-    private fun loadMangaExtension(
+    private fun loadAnimeExtension(
         context: Context,
         pkgName: String,
         pkgInfo: PackageInfo
@@ -390,7 +388,7 @@ internal object ExtensionLoader {
             else -> "all"
         }
 
-        val extension = MangaExtension.Installed(
+        val extension = AnimeExtension.Installed(
             name = extName,
             pkgName = pkgName,
             versionName = versionName,
@@ -408,7 +406,7 @@ internal object ExtensionLoader {
         return MangaLoadResult.Success(extension)
     }
 
-    private fun loadNovelExtension(
+    private fun loadAnimeExtension(
         context: Context,
         pkgName: String,
         pkgInfo: PackageInfo
@@ -446,7 +444,7 @@ internal object ExtensionLoader {
             return NovelLoadResult.Error(e as Exception)
         }
 
-        val extension = NovelExtension.Installed(
+        val extension = AnimeExtension.Installed(
             name = extName,
             pkgName = pkgName,
             versionName = versionName,
@@ -457,7 +455,6 @@ internal object ExtensionLoader {
         )
         return NovelLoadResult.Success(extension)
     }
-
 
     /**
      * Returns true if the given package is an extension.

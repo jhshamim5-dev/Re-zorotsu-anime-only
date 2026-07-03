@@ -45,7 +45,6 @@ import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import java.util.Locale
 
-
 class InstalledAnimeExtensionsFragment : Fragment(), SearchQueryHandler {
     private var _binding: FragmentExtensionsBinding? = null
     private val binding get() = _binding!!
@@ -229,7 +228,6 @@ class InstalledAnimeExtensionsFragment : Fragment(), SearchQueryHandler {
         }
         ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(extensionsRecyclerView)
 
-
         lifecycleScope.launch {
             animeExtensionManager.installedExtensionsFlow.collect { extensions ->
                 extensionsAdapter.updateData(sortToAnimeSourcesList(extensions))
@@ -237,7 +235,6 @@ class InstalledAnimeExtensionsFragment : Fragment(), SearchQueryHandler {
         }
         return binding.root
     }
-
 
     private fun sortToAnimeSourcesList(inpt: List<AnimeExtension.Installed>): List<AnimeExtension.Installed> {
         val sourcesMap = inpt.associateBy { it.name }

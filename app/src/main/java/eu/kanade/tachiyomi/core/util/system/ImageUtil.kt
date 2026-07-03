@@ -14,7 +14,6 @@ import kotlin.math.max
 
 object ImageUtil {
 
-
     enum class ImageType(val mime: String, val extension: String) {
         AVIF("image/avif", "avif"),
         GIF("image/gif", "gif"),

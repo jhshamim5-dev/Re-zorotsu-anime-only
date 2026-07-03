@@ -75,10 +75,10 @@ class ExtensionsActivity : AppCompatActivity() {
                 return when (position) {
                     0 -> InstalledAnimeExtensionsFragment()
                     1 -> AnimeExtensionsFragment()
-                    2 -> InstalledMangaExtensionsFragment()
-                    3 -> MangaExtensionsFragment()
-                    4 -> InstalledNovelExtensionsFragment()
-                    5 -> NovelExtensionsFragment()
+                    2 -> InstalledAnimeExtensionsFragment()
+                    3 -> AnimeExtensionsFragment()
+                    4 -> InstalledAnimeExtensionsFragment()
+                    5 -> AnimeExtensionsFragment()
                     else -> AnimeExtensionsFragment()
                 }
             }
@@ -139,7 +139,6 @@ class ExtensionsActivity : AppCompatActivity() {
             }
         }.attach()
 
-
         searchView.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
@@ -196,11 +195,11 @@ class ExtensionsActivity : AppCompatActivity() {
                 }
 
                 MediaType.MANGA -> {
-                    PrefManager.getVal(PrefName.MangaExtensionRepos)
+                    PrefManager.getVal(PrefName.AnimeExtensionRepos)
                 }
 
                 MediaType.NOVEL -> {
-                    PrefManager.getVal(PrefName.NovelExtensionRepos)
+                    PrefManager.getVal(PrefName.AnimeExtensionRepos)
                 }
             }
             AddRepositoryBottomSheet.newInstance(

@@ -30,7 +30,6 @@ class ProfileStatsConfigure : AppCompatActivity(),
         val appWidgetManager = AppWidgetManager.getInstance(context)
         //updateAppWidget(context, appWidgetManager, appWidgetId)
 
-
         ProfileStatsWidget.updateAppWidget(
             context,
             appWidgetManager,

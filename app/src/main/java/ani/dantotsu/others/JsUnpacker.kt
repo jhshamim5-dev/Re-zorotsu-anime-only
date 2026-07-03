@@ -122,7 +122,6 @@ class JsUnpacker(packedJS: String?) {
         this.packedJS = packedJS
     }
 
-
     companion object {
         val c =
             listOf(

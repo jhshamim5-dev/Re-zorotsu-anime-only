@@ -13,7 +13,6 @@ import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.module.AppGlideModule
 import java.io.InputStream
 
-
 @GlideModule
 class DantotsuGlideApp : AppGlideModule() {
     @SuppressLint("CheckResult")

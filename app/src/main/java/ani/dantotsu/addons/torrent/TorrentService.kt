@@ -28,7 +28,6 @@ import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import kotlin.coroutines.EmptyCoroutineContext
 
-
 class TorrentServerService : Service() {
     private val serviceScope = CoroutineScope(EmptyCoroutineContext)
     private val applicationContext = Injekt.get<Application>()
@@ -144,7 +143,6 @@ class TorrentServerService : Service() {
                 e.printStackTrace()
             }
         }
-
 
         fun stop() {
             try {

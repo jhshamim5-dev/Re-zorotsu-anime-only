@@ -68,7 +68,6 @@ object AnimeSources : WatchSources() {
     }
 }
 
-
 object HAnimeSources : WatchSources() {
     private val aList: List<Lazier<BaseParser>> = lazyList(
     )

@@ -13,10 +13,10 @@ import ani.dantotsu.addons.torrent.TorrentAddonManager
 import ani.dantotsu.media.AddonType
 import ani.dantotsu.media.MediaType
 import ani.dantotsu.media.Type
-import ani.dantotsu.parsers.novel.NovelExtensionManager
+// removed: AnimeExtensionManager
 import eu.kanade.tachiyomi.extension.InstallStep
 import eu.kanade.tachiyomi.extension.anime.AnimeExtensionManager
-import eu.kanade.tachiyomi.extension.manga.MangaExtensionManager
+import eu.kanade.tachiyomi.extension.anime.AnimeExtensionManager
 import uy.kohesive.injekt.injectLazy
 import java.util.Collections
 import java.util.concurrent.atomic.AtomicReference
@@ -27,8 +27,8 @@ import java.util.concurrent.atomic.AtomicReference
 abstract class Installer(private val service: Service) {
 
     private val animeExtensionManager: AnimeExtensionManager by injectLazy()
-    private val mangaExtensionManager: MangaExtensionManager by injectLazy()
-    private val novelExtensionManager: NovelExtensionManager by injectLazy()
+    private val mangaExtensionManager: AnimeExtensionManager by injectLazy()
+    private val novelExtensionManager: AnimeExtensionManager by injectLazy()
     private val torrentAddonManager: TorrentAddonManager by injectLazy()
     private val downloadAddonManager: DownloadAddonManager by injectLazy()
 

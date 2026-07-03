@@ -59,7 +59,6 @@ query {
   }
 }""".trimIndent()
 
-
         val result = getKitsuData(query) ?: return null
         //Logger.log("Kitsu : result=$result")
         media.idKitsu = result.data?.lookupMapping?.id

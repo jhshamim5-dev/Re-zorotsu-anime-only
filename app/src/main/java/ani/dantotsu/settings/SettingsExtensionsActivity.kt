@@ -56,11 +56,11 @@ class SettingsExtensionsActivity : AppCompatActivity() {
                     }
 
                     MediaType.MANGA -> {
-                        PrefName.MangaExtensionRepos
+                        PrefName.AnimeExtensionRepos
                     }
 
                     MediaType.NOVEL -> {
-                        PrefName.NovelExtensionRepos
+                        PrefName.AnimeExtensionRepos
                     }
                 }
                 PrefManager.getVal<Set<String>>(prefName).forEach { item ->
@@ -113,7 +113,7 @@ class SettingsExtensionsActivity : AppCompatActivity() {
                         icon = R.drawable.ic_github,
                         onClick = {
                             val mangaRepos =
-                                PrefManager.getVal<Set<String>>(PrefName.MangaExtensionRepos)
+                                PrefManager.getVal<Set<String>>(PrefName.AnimeExtensionRepos)
                             AddRepositoryBottomSheet.newInstance(
                                 MediaType.MANGA,
                                 mangaRepos.toList(),
@@ -138,7 +138,7 @@ class SettingsExtensionsActivity : AppCompatActivity() {
                         icon = R.drawable.ic_github,
                         onClick = {
                             val novelRepos =
-                                PrefManager.getVal<Set<String>>(PrefName.NovelExtensionRepos)
+                                PrefManager.getVal<Set<String>>(PrefName.AnimeExtensionRepos)
                             AddRepositoryBottomSheet.newInstance(
                                 MediaType.NOVEL,
                                 novelRepos.toList(),

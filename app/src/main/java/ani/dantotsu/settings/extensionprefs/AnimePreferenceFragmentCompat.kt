@@ -105,7 +105,6 @@ class InitialAnimeSourcePreferencesFragment(
         view?.setBackgroundColor(color)
     }
 
-
     fun populateAnimePreferenceScreen(): PreferenceScreen {
         val dataStore = SharedPreferencesDataStore(sharedPreferences)
         preferenceManager.preferenceDataStore = dataStore

@@ -157,19 +157,16 @@ data class Lazier<T>(
     val get = lazy { factory() ?: lClass?.call() }
 }
 
-
 fun <T> lazyList(vararg objects: Pair<String, () -> T>): List<Lazier<T>> {
     return objects.map {
         Lazier(it.second, it.first)
     }
 }
 
-
 fun <T> T.printIt(pre: String = ""): T {
     println("$pre$this")
     return this
 }
-
 
 fun OkHttpClient.Builder.addGoogleDns() = (
         addGenericDns(

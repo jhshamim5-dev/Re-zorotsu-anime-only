@@ -74,7 +74,6 @@ class Query {
         )
     }
 
-
     @Serializable
     data class Author(
         @SerialName("data")

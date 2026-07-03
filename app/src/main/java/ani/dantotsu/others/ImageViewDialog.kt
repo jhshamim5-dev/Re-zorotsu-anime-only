@@ -12,9 +12,9 @@ import ani.dantotsu.BottomSheetDialogFragment
 import ani.dantotsu.FileUrl
 import ani.dantotsu.R
 import ani.dantotsu.databinding.BottomSheetImageBinding
-import ani.dantotsu.media.manga.mangareader.BaseImageAdapter.Companion.loadBitmap
-import ani.dantotsu.media.manga.mangareader.BaseImageAdapter.Companion.loadBitmapOld
-import ani.dantotsu.media.manga.mangareader.BaseImageAdapter.Companion.mergeBitmap
+// removed: mangareader.BaseImageAdapter.Companion.loadBitmap
+// removed: mangareader.BaseImageAdapter.Companion.loadBitmapOld
+// removed: mangareader.BaseImageAdapter.Companion.mergeBitmap
 import ani.dantotsu.openLinkInBrowser
 import ani.dantotsu.saveImageToDownloads
 import ani.dantotsu.setSafeOnClickListener

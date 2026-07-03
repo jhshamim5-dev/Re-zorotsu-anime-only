@@ -129,7 +129,7 @@ fun MangaPageComposable(fragmentManager: FragmentManager) {
             val existingFragment = fragmentManager.findFragmentById(container.id)
             if (existingFragment == null) {
                 fragmentManager.beginTransaction()
-                    .replace(container.id, MangaFragment())
+                    .replace(container.id, AnimeFragment())
                     .commitNowAllowingStateLoss()
             }
         },
@@ -208,7 +208,7 @@ fun OfflineMangaPageComposable(fragmentManager: FragmentManager) {
             val existingFragment = fragmentManager.findFragmentById(container.id)
             if (existingFragment == null) {
                 fragmentManager.beginTransaction()
-                    .replace(container.id, ani.dantotsu.download.manga.OfflineMangaFragment())
+                    .replace(container.id, ani.dantotsu.download.anime.OfflineAnimeFragment())
                     .commitNowAllowingStateLoss()
             }
         },

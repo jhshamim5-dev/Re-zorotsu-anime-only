@@ -1,15 +1,14 @@
 package eu.kanade.tachiyomi.extension.api
 
-import ani.dantotsu.parsers.novel.AvailableNovelSources
-import ani.dantotsu.parsers.novel.NovelExtension
+// removed: AvailableAnimeSources
+// removed: AnimeExtension
 import ani.dantotsu.settings.saving.PrefManager
 import ani.dantotsu.settings.saving.PrefName
 import ani.dantotsu.util.Logger
 import eu.kanade.tachiyomi.extension.anime.model.AnimeExtension
 import eu.kanade.tachiyomi.extension.anime.model.AvailableAnimeSources
-import eu.kanade.tachiyomi.extension.manga.model.AvailableMangaSources
-import eu.kanade.tachiyomi.extension.manga.model.MangaExtension
-import eu.kanade.tachiyomi.extension.util.ExtensionLoader
+import eu.kanade.tachiyomi.extension.anime.model.AvailableAnimeSources
+// removed: import eu.kanade.tachiyomi.extension.util.ExtensionLoader
 import eu.kanade.tachiyomi.network.GET
 import eu.kanade.tachiyomi.network.NetworkHelper
 import eu.kanade.tachiyomi.network.awaitSuccess
@@ -131,9 +130,9 @@ internal class ExtensionGithubApi {
         return "${extension.repository.removeSuffix("index.min.json")}/apk/${extension.apkName}"
     }
 
-    private fun List<ExtensionSourceJsonObject>.toMangaExtensionSources(): List<AvailableMangaSources> {
+    private fun List<ExtensionSourceJsonObject>.toAnimeExtensionSources(): List<AvailableAnimeSources> {
         return this.map {
-            AvailableMangaSources(
+            AvailableAnimeSources(
                 id = it.id,
                 lang = it.lang,
                 name = it.name,
@@ -142,14 +141,14 @@ internal class ExtensionGithubApi {
         }
     }
 
-    private fun List<ExtensionJsonObject>.toMangaExtensions(repository: String): List<MangaExtension.Available> {
+    private fun List<ExtensionJsonObject>.toAnimeExtensions(repository: String): List<AnimeExtension.Available> {
         return this
             .filter {
                 val libVersion = it.extractLibVersion()
                 libVersion >= ExtensionLoader.MANGA_LIB_VERSION_MIN && libVersion <= ExtensionLoader.MANGA_LIB_VERSION_MAX
             }
             .map {
-                MangaExtension.Available(
+                AnimeExtension.Available(
                     name = it.name.substringAfter("Tachiyomi: "),
                     pkgName = it.pkg,
                     versionName = it.version,
@@ -159,7 +158,7 @@ internal class ExtensionGithubApi {
                     isNsfw = it.nsfw == 1,
                     hasReadme = it.hasReadme == 1,
                     hasChangelog = it.hasChangelog == 1,
-                    sources = it.sources?.toMangaExtensionSources().orEmpty(),
+                    sources = it.sources?.toAnimeExtensionSources().orEmpty(),
                     apkName = it.apk,
                     repository = repository,
                     iconUrl = "${repository.removeSuffix("/index.min.json")}/icon/${it.pkg}.png",
@@ -167,14 +166,14 @@ internal class ExtensionGithubApi {
             }
     }
 
-    suspend fun findMangaExtensions(): List<MangaExtension.Available> {
+    suspend fun findAnimeExtensions(): List<AnimeExtension.Available> {
         return withIOContext {
 
-            val extensions: ArrayList<MangaExtension.Available> = arrayListOf()
+            val extensions: ArrayList<AnimeExtension.Available> = arrayListOf()
             val seenPackages = mutableSetOf<String>()
 
             val repos =
-                PrefManager.getVal<Set<String>>(PrefName.MangaExtensionRepos).toMutableList()
+                PrefManager.getVal<Set<String>>(PrefName.AnimeExtensionRepos).toMutableList()
 
             repos.forEach {
                 val repoUrl = if (it.contains("index.min.json")) {
@@ -202,7 +201,7 @@ internal class ExtensionGithubApi {
                     val repoExtensions = with(json) {
                         response
                             .parseAs<List<ExtensionJsonObject>>()
-                            .toMangaExtensions(it)
+                            .toAnimeExtensions(it)
                     }
 
                     val uniqueExtensions = repoExtensions.filter { ext ->
@@ -227,18 +226,18 @@ internal class ExtensionGithubApi {
         }
     }
 
-    fun getMangaApkUrl(extension: MangaExtension.Available): String {
+    fun getMangaApkUrl(extension: AnimeExtension.Available): String {
         return "${extension.repository.removeSuffix("index.min.json")}/apk/${extension.apkName}"
     }
 
-    suspend fun findNovelExtensions(): List<NovelExtension.Available> {
+    suspend fun findAnimeExtensions(): List<AnimeExtension.Available> {
         return withIOContext {
 
-            val extensions: ArrayList<NovelExtension.Available> = arrayListOf()
+            val extensions: ArrayList<AnimeExtension.Available> = arrayListOf()
             val seenPackages = mutableSetOf<String>()
 
             val repos =
-                PrefManager.getVal<Set<String>>(PrefName.NovelExtensionRepos).toMutableList()
+                PrefManager.getVal<Set<String>>(PrefName.AnimeExtensionRepos).toMutableList()
 
             repos.forEach {
                 val repoUrl = if (it.contains("index.min.json") || it.contains("plugins.min.json")) {
@@ -273,7 +272,7 @@ internal class ExtensionGithubApi {
                     var parsedStandard = false
                     
                     try {
-                        val repoExtensions = json.decodeFromString<List<ExtensionJsonObject>>(responseBody).toNovelExtensions(it)
+                        val repoExtensions = json.decodeFromString<List<ExtensionJsonObject>>(responseBody).toAnimeExtensions(it)
                         val uniqueExtensions = repoExtensions.filter { ext ->
                             val isNew = !seenPackages.contains(ext.pkgName)
                             val isNotFiltered = !shouldFilter(ext.pkgName)
@@ -305,7 +304,7 @@ internal class ExtensionGithubApi {
                                     val fallbackIcon = if (iconUrl.isNotBlank()) iconUrl else "https://raw.githubusercontent.com/LNReader/lnreader-plugins/plugins/v3.0.0/.dist/icon/default.png"
                                     
                                     extensions.add(
-                                        NovelExtension.Available(
+                                        AnimeExtension.Available(
                                             name = obj.getString("name"),
                                             pkgName = pkgName,
                                             versionName = obj.getString("version"),
@@ -333,7 +332,7 @@ internal class ExtensionGithubApi {
         }
     }
 
-    private fun List<ExtensionJsonObject>.toNovelExtensions(repository: String): List<NovelExtension.Available> {
+    private fun List<ExtensionJsonObject>.toAnimeExtensions(repository: String): List<AnimeExtension.Available> {
         return mapNotNull { extension ->
             val sources = extension.sources?.map { source ->
                 ExtensionSourceJsonObject(
@@ -344,21 +343,21 @@ internal class ExtensionGithubApi {
                 )
             }
             val iconUrl = "${repository.removeSuffix("/index.min.json")}/icon/${extension.pkg}.png"
-            NovelExtension.Available(
+            AnimeExtension.Available(
                 extension.name,
                 extension.pkg,
                 extension.apk,
                 extension.code,
                 repository,
-                sources?.toNovelSources() ?: emptyList(),
+                sources?.toAnimeSources() ?: emptyList(),
                 iconUrl,
             )
         }
     }
 
-    private fun List<ExtensionSourceJsonObject>.toNovelSources(): List<AvailableNovelSources> {
+    private fun List<ExtensionSourceJsonObject>.toAnimeSources(): List<AvailableAnimeSources> {
         return map { source ->
-            AvailableNovelSources(
+            AvailableAnimeSources(
                 source.id,
                 source.lang,
                 source.name,
@@ -367,7 +366,7 @@ internal class ExtensionGithubApi {
         }
     }
 
-    fun getNovelApkUrl(extension: NovelExtension.Available): String {
+    fun getNovelApkUrl(extension: AnimeExtension.Available): String {
         return "${extension.repository.removeSuffix("index.min.json")}/apk/${extension.pkgName}.apk"
     }
 

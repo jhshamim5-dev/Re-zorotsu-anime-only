@@ -17,7 +17,6 @@ class NotificationReceiver {
     companion object {
         private const val NAME = "NotificationReceiver"
 
-
         /**
          * Returns [PendingIntent] that opens the extensions controller.
          *
@@ -36,7 +35,6 @@ class NotificationReceiver {
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
             )
         }
-
 
     }
 }

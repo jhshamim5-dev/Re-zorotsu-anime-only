@@ -76,7 +76,6 @@ class OfflineAnimeParser : AnimeParser() {
         )
     }
 
-
     override suspend fun search(query: String): List<ShowResponse> {
         val titles = downloadManager.animeDownloadedTypes.map { it.titleName }.distinct()
         val returnTitlesPair: MutableList<Pair<String, Int>> = mutableListOf()

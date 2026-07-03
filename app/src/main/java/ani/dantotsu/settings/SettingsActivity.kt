@@ -39,7 +39,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
-
 class SettingsActivity : AppCompatActivity() {
     lateinit var binding: ActivitySettingsBinding
     private var cursedCounter = 0
@@ -129,7 +128,7 @@ class SettingsActivity : AppCompatActivity() {
                         desc = getString(R.string.manga_desc),
                         icon = R.drawable.ic_round_import_contacts_24,
                         onClick = {
-                            startActivity(Intent(context, SettingsMangaActivity::class.java))
+                            startActivity(Intent(context, SettingsActivity::class.java))
                         },
                         isActivity = true
                     ),
@@ -190,7 +189,6 @@ class SettingsActivity : AppCompatActivity() {
                 }
             }
 
-
             loginDiscord.setOnClickListener {
                 openLinkInBrowser(getString(R.string.discord))
             }
@@ -200,7 +198,6 @@ class SettingsActivity : AppCompatActivity() {
             loginTelegram.setOnClickListener {
                 openLinkInBrowser(getString(R.string.telegram))
             }
-
 
             var splashJob: kotlinx.coroutines.Job? = null
             fun playSplashAnimation() {

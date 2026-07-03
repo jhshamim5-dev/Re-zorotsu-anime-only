@@ -17,7 +17,7 @@ import ani.dantotsu.themes.ThemeManager
 class ReaderSettingsActivity : AppCompatActivity() {
     lateinit var binding: ActivityReaderSettingsBinding
     private var defaultSettings = CurrentReaderSettings()
-    private var defaultSettingsLN = CurrentNovelReaderSettings()
+    private var defaultSettingsLN = CurrentReaderSettings()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -50,7 +50,6 @@ class ReaderSettingsActivity : AppCompatActivity() {
         binding.readerSettingsAutoWebToon.setOnCheckedChangeListener { _, isChecked ->
             PrefManager.setVal(PrefName.AutoDetectWebtoon, isChecked)
         }
-
 
         val layoutList = listOf(
             binding.readerSettingsPaged,
@@ -199,8 +198,8 @@ class ReaderSettingsActivity : AppCompatActivity() {
                 selectedLN.alpha = 0.33f
                 selectedLN = imageButton
                 selectedLN.alpha = 1f
-                defaultSettingsLN.layout = CurrentNovelReaderSettings.Layouts[index]
-                    ?: CurrentNovelReaderSettings.Layouts.PAGED
+                defaultSettingsLN.layout = CurrentReaderSettings.Layouts[index]
+                    ?: CurrentReaderSettings.Layouts.PAGED
                 binding.LNlayoutText.text = defaultSettingsLN.layout.string
                 PrefManager.setVal(PrefName.LayoutNovel, defaultSettingsLN.layout.ordinal)
             }

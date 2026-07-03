@@ -17,7 +17,6 @@ import java.net.URLDecoder
 import java.net.URLEncoder
 import kotlin.system.measureTimeMillis
 
-
 abstract class BaseParser {
 
     /**
@@ -63,13 +62,13 @@ abstract class BaseParser {
      * Isn't necessary to override, but recommended, if you want to improve auto search results
      * **/
     open suspend fun autoSearch(mediaObj: Media): ShowResponse? {
-        (this as? DynamicMangaParser)?.let { ext ->
+        (this as? DynamicBaseParser)?.let { ext ->
             mediaObj.selected?.langIndex?.let {
                 ext.sourceLanguage = it
             }
         }
         var response: ShowResponse? = loadSavedShowResponse(mediaObj.id)
-        if (response != null && this !is OfflineMangaParser && this !is OfflineAnimeParser) {
+        if (response != null && this !is OfflineBaseParser && this !is OfflineAnimeParser) {
             saveShowResponse(mediaObj.id, response, true)
         } else {
             setUserText("Searching : ${mediaObj.mainName()}")
@@ -228,7 +227,6 @@ abstract class BaseParser {
     val defaultImage = "https://s4.anilist.co/file/anilistcdn/media/manga/cover/medium/default.jpg"
 }
 
-
 /**
  * A single show which contains some episodes/chapters which is sent by the site using their search function.
  *
@@ -289,5 +287,4 @@ data class ShowResponse(
         private const val serialVersionUID = 1L
     }
 }
-
 

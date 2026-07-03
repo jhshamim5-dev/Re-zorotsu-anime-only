@@ -79,8 +79,6 @@ fun Context.getResourceColor(@AttrRes resource: Int, alphaFactor: Float = 1f): I
     return color
 }
 
-
-
 val Context.powerManager: PowerManager
     get() = getSystemService()!!
 
@@ -147,7 +145,6 @@ fun Context.createFileInCacheDir(name: String): File {
     return file
 }
 
-
 /**
  * Returns true if [packageName] is installed.
  */
@@ -169,11 +166,9 @@ fun Context.getUriSize(uri: Uri): Long? {
     return UniFile.fromUri(this, uri).length().takeIf { it >= 0 }
 }
 
-
 val Context.hasMiuiPackageInstaller get() = isPackageInstalled("com.miui.packageinstaller")
 
 val Context.isShizukuInstalled get() = false
-
 
 fun Context.getApplicationIcon(pkgName: String): Drawable? {
     return try {

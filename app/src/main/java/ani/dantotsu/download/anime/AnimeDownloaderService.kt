@@ -61,7 +61,6 @@ import java.net.URL
 import java.util.Queue
 import java.util.concurrent.ConcurrentLinkedQueue
 
-
 class AnimeDownloaderService : Service() {
 
     private lateinit var notificationManager: NotificationManagerCompat
@@ -564,7 +563,6 @@ class AnimeDownloaderService : Service() {
             }
         }
     }
-
 
     data class AnimeDownloadTask(
         val title: String,

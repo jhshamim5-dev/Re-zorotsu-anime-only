@@ -28,7 +28,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-
 class MediaListDialogFragment : BottomSheetDialogFragment() {
 
     private var _binding: BottomSheetMediaListBinding? = null
@@ -71,7 +70,6 @@ class MediaListDialogFragment : BottomSheetDialogFragment() {
                         statusStrings
                     )
                 )
-
 
                 var total: Int? = null
                 binding.mediaListProgress.setText(if (media!!.userProgress != null) media!!.userProgress.toString() else "")
@@ -132,7 +130,6 @@ class MediaListDialogFragment : BottomSheetDialogFragment() {
                 }
                 start.dialog.setOnDismissListener { _binding?.mediaListStart?.setText(start.date.toStringOrEmpty()) }
                 end.dialog.setOnDismissListener { _binding?.mediaListEnd?.setText(end.date.toStringOrEmpty()) }
-
 
                 fun onComplete() {
                     binding.mediaListProgress.setText(total.toString())
@@ -217,7 +214,6 @@ class MediaListDialogFragment : BottomSheetDialogFragment() {
                         binding.mediaListCustomListContainer.addView(this)
                     }
                 }
-
 
                 binding.mediaListSave.setOnClickListener {
                     scope.launch {

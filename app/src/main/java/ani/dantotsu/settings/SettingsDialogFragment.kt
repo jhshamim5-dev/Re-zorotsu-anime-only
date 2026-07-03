@@ -14,13 +14,12 @@ import ani.dantotsu.R
 import ani.dantotsu.connections.anilist.Anilist
 import ani.dantotsu.databinding.BottomSheetSettingsBinding
 import ani.dantotsu.download.anime.OfflineAnimeFragment
-import ani.dantotsu.download.manga.OfflineMangaFragment
+// removed: // removed: OfflineAnimeFragment
 import ani.dantotsu.getThemeColor
 import ani.dantotsu.home.AnimeFragment
 import ani.dantotsu.home.HomeFragment
 import ani.dantotsu.home.LoginFragment
-import ani.dantotsu.home.MangaFragment
-import ani.dantotsu.home.NoInternet
+// removed: import ani.dantotsu.home.NoInternet
 import ani.dantotsu.incognitoNotification
 import ani.dantotsu.loadImage
 import ani.dantotsu.offline.OfflineFragment
@@ -39,9 +38,6 @@ import android.view.WindowManager
 import android.os.Build
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.ColorDrawable
-
-
-
 
 class SettingsDialogFragment : BottomSheetDialogFragment() {
     private var _binding: BottomSheetSettingsBinding? = null
@@ -85,7 +81,6 @@ class SettingsDialogFragment : BottomSheetDialogFragment() {
         } else {
             binding.settingsContainer.setBackgroundResource(R.drawable.bottom_sheet_background)
         }
-
 
         window?.statusBarColor = Color.CYAN
         window?.navigationBarColor =
@@ -163,7 +158,7 @@ class SettingsDialogFragment : BottomSheetDialogFragment() {
                         val intent = Intent(activity, NoInternet::class.java)
                         intent.putExtra(
                             "FRAGMENT_CLASS_NAME",
-                            OfflineMangaFragment::class.java.name
+                            OfflineAnimeFragment::class.java.name
                         )
                         startActivity(intent)
                     }
@@ -185,7 +180,7 @@ class SettingsDialogFragment : BottomSheetDialogFragment() {
 
                     PageType.OfflineMANGA -> {
                         val intent = Intent(activity, MainActivity::class.java)
-                        intent.putExtra("FRAGMENT_CLASS_NAME", MangaFragment::class.java.name)
+                        intent.putExtra("FRAGMENT_CLASS_NAME", AnimeFragment::class.java.name)
                         startActivity(intent)
                     }
 

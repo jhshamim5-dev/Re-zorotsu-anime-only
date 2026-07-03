@@ -44,8 +44,7 @@ import ani.dantotsu.databinding.SplashScreenBinding
 import ani.dantotsu.home.AnimeFragment
 import ani.dantotsu.home.HomeFragment
 import ani.dantotsu.home.LoginFragment
-import ani.dantotsu.home.MangaFragment
-import ani.dantotsu.home.NoInternet
+// removed: import ani.dantotsu.home.NoInternet
 import ani.dantotsu.media.MediaDetailsActivity
 import ani.dantotsu.notifications.TaskScheduler
 import ani.dantotsu.others.CustomBottomDialog
@@ -106,14 +105,11 @@ import androidx.compose.ui.Alignment
 import com.kyant.backdrop.backdrops.layerBackdrop
 import java.io.Serializable
 
-
-
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var incognitoLiveData: SharedPreferenceBooleanLiveData
     private val scope = lifecycleScope
     private var load = false
-
 
     @kotlin.OptIn(DelicateCoroutinesApi::class)
     @SuppressLint("InternalInsetResource", "DiscouragedApi")
@@ -249,7 +245,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
         binding.root.doOnAttach {
             initActivity(this)
             val preferences: SourcePreferences = Injekt.get()
@@ -267,7 +262,7 @@ class MainActivity : AppCompatActivity() {
                 when (fragment) {
                     AnimeFragment::class.java.name -> 0
                     HomeFragment::class.java.name -> 1
-                    MangaFragment::class.java.name -> 2
+                    AnimeFragment::class.java.name -> 2
                     else -> 1
                 }
             } else {
@@ -475,9 +470,9 @@ class MainActivity : AppCompatActivity() {
             if ((uri.scheme == "tachiyomi" || uri.scheme == "aniyomi" || uri.scheme == "novelyomi") && uri.host == "add-repo") {
                 val url = uri.getQueryParameter("url") ?: throw Exception("No url for repo import")
                 val (prefName, name) = when (uri.scheme) {
-                    "tachiyomi" -> PrefName.MangaExtensionRepos to "Manga"
+                    "tachiyomi" -> PrefName.AnimeExtensionRepos to "Manga"
                     "aniyomi" -> PrefName.AnimeExtensionRepos to "Anime"
-                    "novelyomi" -> PrefName.NovelExtensionRepos to "Novel"
+                    "novelyomi" -> PrefName.AnimeExtensionRepos to "Novel"
                     else -> throw Exception("Invalid scheme")
                 }
                 val savedRepos: Set<String> = PrefManager.getVal(prefName)
@@ -577,7 +572,7 @@ class MainActivity : AppCompatActivity() {
             when (position) {
                 0 -> return AnimeFragment()
                 1 -> return if (Anilist.token != null) HomeFragment() else LoginFragment()
-                2 -> return MangaFragment()
+                2 -> return AnimeFragment()
             }
             return LoginFragment()
         }

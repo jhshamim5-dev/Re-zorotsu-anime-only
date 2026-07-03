@@ -374,7 +374,6 @@ class SearchFilterBottomDialog : BottomSheetDialogFragment() {
         binding.searchTagsGrid.isChecked = false
     }
 
-
     class FilterChipAdapter(val list: List<String>, private val perform: ((Chip) -> Unit)) :
         RecyclerView.Adapter<FilterChipAdapter.SearchChipViewHolder>() {
         inner class SearchChipViewHolder(val binding: ItemChipBinding) :
@@ -385,7 +384,6 @@ class SearchFilterBottomDialog : BottomSheetDialogFragment() {
                 ItemChipBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             return SearchChipViewHolder(binding)
         }
-
 
         override fun onBindViewHolder(holder: SearchChipViewHolder, position: Int) {
             val title = list[position]

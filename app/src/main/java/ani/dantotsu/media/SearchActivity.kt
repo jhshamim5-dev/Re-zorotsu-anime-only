@@ -13,7 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import ani.dantotsu.connections.anilist.AniMangaSearchResults
+import ani.dantotsu.connections.anilist.AnimeSearchResults
 import ani.dantotsu.connections.anilist.Anilist
 import ani.dantotsu.connections.anilist.AnilistSearch
 import ani.dantotsu.connections.anilist.AnilistSearch.SearchType
@@ -54,7 +54,7 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var concatAdapter: ConcatAdapter
     private lateinit var headerAdaptor: HeaderInterface
 
-    lateinit var aniMangaResult: AniMangaSearchResults
+    lateinit var aniMangaResult: AnimeSearchResults
     lateinit var characterResult: CharacterSearchResults
     lateinit var studioResult: StudioSearchResults
     lateinit var staffResult: StaffSearchResults
@@ -86,7 +86,7 @@ class SearchActivity : AppCompatActivity() {
 
                 if (model.notSet) {
                     model.notSet = false
-                    model.aniMangaSearchResults = AniMangaSearchResults(
+                    model.aniMangaSearchResults = AnimeSearchResults(
                         intent.getStringExtra("type") ?: "ANIME",
                         isAdult = if (Anilist.adult) intent.getBooleanExtra(
                             "hentai",
@@ -244,7 +244,7 @@ class SearchActivity : AppCompatActivity() {
 
         when (searchType) {
             SearchType.ANIME, SearchType.MANGA -> {
-                model.getSearch<AniMangaSearchResults>(searchType).observe(this) {
+                model.getSearch<AnimeSearchResults>(searchType).observe(this) {
                     if (it != null) {
                         model.aniMangaSearchResults.apply {
                             onList = it.onList

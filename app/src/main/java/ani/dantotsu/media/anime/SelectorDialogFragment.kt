@@ -66,7 +66,6 @@ import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 import java.text.DecimalFormat
 
-
 class SelectorDialogFragment : BottomSheetDialogFragment() {
     private var _binding: BottomSheetSelectorBinding? = null
     private val binding get() = _binding!!

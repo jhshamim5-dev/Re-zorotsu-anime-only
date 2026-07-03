@@ -125,7 +125,6 @@ class DownloadAddonManager(
         installer.updateInstallStep(id, InstallStep.Installing)
     }
 
-
     companion object {
 
         const val DOWNLOAD_PACKAGE = "dantotsu.downloadAddon"

@@ -50,7 +50,6 @@ import eu.kanade.tachiyomi.util.system.WebViewUtil
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
-
 class AnimeWatchAdapter(
     private val media: Media,
     private val fragment: AnimeWatchFragment,

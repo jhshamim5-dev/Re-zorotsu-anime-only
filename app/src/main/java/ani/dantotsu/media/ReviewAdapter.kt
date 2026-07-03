@@ -1,6 +1,5 @@
 package ani.dantotsu.media
 
-
 import android.content.Intent
 import android.view.View
 import androidx.core.content.ContextCompat

@@ -12,7 +12,6 @@ data class FuzzyDate(
     @SerialName("day") val day: Int? = null,
 ) : Serializable, Comparable<FuzzyDate> {
 
-
     fun isEmpty(): Boolean {
         return year == null && month == null && day == null
     }

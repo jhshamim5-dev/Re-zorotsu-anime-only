@@ -16,9 +16,7 @@ import ani.dantotsu.connections.crashlytics.CrashlyticsInterface
 import ani.dantotsu.notifications.TaskScheduler
 import ani.dantotsu.others.DisabledReports
 import ani.dantotsu.parsers.AnimeSources
-import ani.dantotsu.parsers.MangaSources
-import ani.dantotsu.parsers.NovelSources
-import ani.dantotsu.parsers.novel.NovelExtensionManager
+// removed: // removed: // removed: AnimeExtensionManager
 import ani.dantotsu.settings.SettingsActivity
 import ani.dantotsu.settings.saving.PrefManager
 import ani.dantotsu.settings.saving.PrefName
@@ -27,7 +25,7 @@ import ani.dantotsu.util.Logger
 import com.google.android.material.color.DynamicColors
 import eu.kanade.tachiyomi.data.notification.Notifications
 import eu.kanade.tachiyomi.extension.anime.AnimeExtensionManager
-import eu.kanade.tachiyomi.extension.manga.MangaExtensionManager
+import eu.kanade.tachiyomi.extension.anime.AnimeExtensionManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
@@ -41,14 +39,9 @@ import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.addSingletonFactory
 import uy.kohesive.injekt.api.get
 
-
 @SuppressLint("StaticFieldLeak")
 class App : MultiDexApplication() {
     private lateinit var animeExtensionManager: AnimeExtensionManager
-    private lateinit var mangaExtensionManager: MangaExtensionManager
-    private lateinit var novelExtensionManager: NovelExtensionManager
-    private lateinit var lnReaderPluginManager: ani.dantotsu.parsers.novel.lnreader.LnReaderPluginManager
-    private lateinit var lnReaderJsExecutor: ani.dantotsu.parsers.novel.lnreader.LnReaderJsExecutor
     private lateinit var torrentAddonManager: TorrentAddonManager
     private lateinit var downloadAddonManager: DownloadAddonManager
 
@@ -78,7 +71,6 @@ class App : MultiDexApplication() {
 
         Injekt.importModule(AppModule(this))
         Injekt.importModule(PreferenceModule(this))
-
 
         val useMaterialYou: Boolean = PrefManager.getVal(PrefName.UseMaterialYou)
         if (useMaterialYou) {
@@ -125,7 +117,7 @@ class App : MultiDexApplication() {
             mangaExtensionManager = Injekt.get()
             mangaExtensionManager.findAvailableExtensions()
             Logger.log("Manga Extensions: ${mangaExtensionManager.installedExtensionsFlow.first()}")
-            MangaSources.init(mangaExtensionManager.installedExtensionsFlow)
+            AnimeSources.init(mangaExtensionManager.installedExtensionsFlow)
         }
         CoroutineScope(Dispatchers.IO).launch {
             novelExtensionManager = Injekt.get()
@@ -136,7 +128,7 @@ class App : MultiDexApplication() {
             lnReaderPluginManager.fetchAvailablePlugins()
             
             Logger.log("Novel Extensions: ${novelExtensionManager.installedExtensionsFlow.first()}")
-            NovelSources.init(
+            AnimeSources.init(
                 novelExtensionManager.installedExtensionsFlow,
                 lnReaderPluginManager.installedPlugins,
                 lnReaderPluginManager,

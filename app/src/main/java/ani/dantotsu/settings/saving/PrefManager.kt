@@ -201,7 +201,6 @@ object PrefManager {
         }
     }
 
-
     fun removeVal(prefName: PrefName) {
         val pref = getPrefLocation(prefName.data.prefLocation)
         with(pref.edit()) {
@@ -340,7 +339,6 @@ object PrefManager {
             prefLocation.associateWith { getPrefLocation(it) }
         )
     }
-
 
     /**
      * @param prefs Map of preferences to import

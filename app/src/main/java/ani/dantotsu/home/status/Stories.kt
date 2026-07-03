@@ -45,7 +45,6 @@ import java.util.Calendar
 import java.util.Locale
 import kotlin.math.abs
 
-
 class Stories @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr), View.OnTouchListener {
@@ -76,7 +75,6 @@ class Stories @JvmOverloads constructor(
 
         binding.touchPanel.setOnTouchListener(this)
     }
-
 
     fun setStoriesList(
         activityList: List<Activity>, startIndex: Int = 1
@@ -260,7 +258,6 @@ class Stories @JvmOverloads constructor(
             }
         }
     }
-
 
     private fun rightPanelTouch() {
         Logger.log("rightPanelTouch: $storyIndex")

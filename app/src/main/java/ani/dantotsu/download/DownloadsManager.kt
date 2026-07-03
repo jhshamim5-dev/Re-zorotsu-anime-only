@@ -271,7 +271,6 @@ class DownloadsManager(private val context: Context) {
         private const val ANIME_SUB_LOCATION = "Anime"
         private const val NOVEL_SUB_LOCATION = "Novel"
 
-
         /**
          * Get and create a base directory for the given type
          * @param context the context

@@ -9,14 +9,12 @@ import ani.dantotsu.connections.crashlytics.CrashlyticsInterface
 import ani.dantotsu.currActivity
 import ani.dantotsu.currContext
 import ani.dantotsu.download.anime.OfflineAnimeModel
-import ani.dantotsu.download.manga.OfflineMangaModel
+// removed: // removed: OfflineAnimeModel
 import ani.dantotsu.media.Media
 import ani.dantotsu.media.MediaNameAdapter
 import ani.dantotsu.media.MediaType
 import ani.dantotsu.parsers.Episode
-import ani.dantotsu.parsers.MangaChapter
-import ani.dantotsu.parsers.MangaImage
-import ani.dantotsu.parsers.Subtitle
+// removed: // removed: import ani.dantotsu.parsers.Subtitle
 import ani.dantotsu.parsers.SubtitleType
 import ani.dantotsu.util.Logger
 import com.google.gson.GsonBuilder
@@ -141,7 +139,7 @@ class DownloadCompat {
         }
 
         @Deprecated("external storage is deprecated, use SAF instead")
-        fun loadOfflineMangaModelCompat(downloadedType: DownloadedType): OfflineMangaModel {
+        fun loadOfflineAnimeModelCompat(downloadedType: DownloadedType): OfflineAnimeModel {
             val type = when (downloadedType.type) {
                 MediaType.MANGA -> "Manga"
                 MediaType.ANIME -> "Anime"
@@ -171,7 +169,7 @@ class DownloadCompat {
                 val readchapter = (mediaModel.userProgress ?: "~").toString()
                 val totalchapter = "${mediaModel.manga?.totalChapters ?: "??"}"
                 val chapters = " Chapters"
-                return OfflineMangaModel(
+                return OfflineAnimeModel(
                     title,
                     score,
                     totalchapter,
@@ -187,7 +185,7 @@ class DownloadCompat {
                 Logger.log("Error loading media.json: ${e.message}")
                 Logger.log(e)
                 Injekt.get<CrashlyticsInterface>().logException(e)
-                return OfflineMangaModel(
+                return OfflineAnimeModel(
                     downloadedType.titleName,
                     "0",
                     "??",
@@ -245,17 +243,17 @@ class DownloadCompat {
             mangaLink: String,
             extra: Map<String, String>?,
             sManga: SManga
-        ): List<MangaChapter> {
+        ): List<Episode> {
             val directory = File(
                 currContext()?.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS),
                 "Zorotsu/Manga/$mangaLink"
             )
             //get all of the folder names and add them to the list
-            val chapters = mutableListOf<MangaChapter>()
+            val chapters = mutableListOf<Episode>()
             if (directory.exists()) {
                 directory.listFiles()?.forEach {
                     if (it.isDirectory) {
-                        val chapter = MangaChapter(
+                        val chapter = Episode(
                             it.name,
                             "$mangaLink/${it.name}",
                             it.name,
@@ -273,17 +271,17 @@ class DownloadCompat {
         }
 
         @Deprecated("external storage is deprecated, use SAF instead")
-        suspend fun loadImagesCompat(chapterLink: String, sChapter: SChapter): List<MangaImage> {
+        suspend fun loadImagesCompat(chapterLink: String, sChapter: SChapter): List<Episode> {
             val directory = File(
                 currContext()?.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS),
                 "Zorotsu/Manga/$chapterLink"
             )
-            val images = mutableListOf<MangaImage>()
+            val images = mutableListOf<Episode>()
             val imageNumberRegex = Regex("""(\d+)\.jpg$""")
             if (directory.exists()) {
                 directory.listFiles()?.forEach {
                     if (it.isFile) {
-                        val image = MangaImage(it.absolutePath, false, null)
+                        val image = Episode(it.absolutePath, false, null)
                         images.add(image)
                     }
                 }

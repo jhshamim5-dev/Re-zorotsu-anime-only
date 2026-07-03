@@ -184,7 +184,6 @@ object AppUpdater {
         }
     }
 
-
     //Blatantly kanged from https://github.com/LagradOst/CloudStream-3/blob/master/app/src/main/java/com/lagradost/cloudstream3/utils/InAppUpdater.kt
     private fun Activity.downloadUpdate(version: String, url: String) {
         toast(getString(R.string.downloading_update, version))

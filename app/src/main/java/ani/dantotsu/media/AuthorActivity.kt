@@ -206,7 +206,6 @@ class AuthorActivity : AppCompatActivity(), AppBarLayout.OnOffsetChangedListener
         return "$age $yearsActive $dob $homeTown $dod"
     }
 
-
     override fun onDestroy() {
         if (Refresh.activity.containsKey(this.hashCode())) {
             Refresh.activity.remove(this.hashCode())

@@ -20,7 +20,7 @@ import ani.dantotsu.R
 import ani.dantotsu.ZoomOutPageTransformer
 import ani.dantotsu.databinding.ActivityNoInternetBinding
 import ani.dantotsu.download.anime.OfflineAnimeFragment
-import ani.dantotsu.download.manga.OfflineMangaFragment
+// removed: // removed: OfflineAnimeFragment
 import ani.dantotsu.initActivity
 import ani.dantotsu.navBarHeight
 import ani.dantotsu.offline.OfflineFragment
@@ -31,7 +31,6 @@ import ani.dantotsu.snackString
 import ani.dantotsu.themes.ThemeManager
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import kotlinx.coroutines.launch
-
 
 class NoInternet : AppCompatActivity() {
     private lateinit var binding: ActivityNoInternetBinding
@@ -44,7 +43,6 @@ class NoInternet : AppCompatActivity() {
         setContentView(binding.root)
 
         // LiquidGlassBottomBar handles its own glass background drawing
-
 
         var doubleBackToExitPressedOnce = false
         onBackPressedDispatcher.addCallback(this) {
@@ -100,7 +98,6 @@ class NoInternet : AppCompatActivity() {
         }
     }
 
-
     private class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
         FragmentStateAdapter(fragmentManager, lifecycle) {
 
@@ -109,7 +106,7 @@ class NoInternet : AppCompatActivity() {
         override fun createFragment(position: Int): Fragment {
             return when (position) {
                 0 -> OfflineAnimeFragment()
-                2 -> OfflineMangaFragment()
+                2 -> OfflineAnimeFragment()
                 else -> OfflineFragment()
             }
         }

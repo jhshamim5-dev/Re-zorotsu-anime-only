@@ -32,17 +32,17 @@ enum class PrefName(val data: Pref) {
         )
     ),
     AnimeExtensionRepos(Pref(Location.General, Set::class, setOf<String>())),
-    MangaExtensionRepos(Pref(Location.General, Set::class, setOf<String>())),
-    NovelExtensionRepos(Pref(Location.General, Set::class, setOf<String>())),
+    AnimeExtensionRepos(Pref(Location.General, Set::class, setOf<String>())),
+    AnimeExtensionRepos(Pref(Location.General, Set::class, setOf<String>())),
     AnimeSourcesOrder(Pref(Location.General, List::class, listOf<String>())),
-    MangaSourcesOrder(Pref(Location.General, List::class, listOf<String>())),
+    AnimeSourcesOrder(Pref(Location.General, List::class, listOf<String>())),
     SortedAnimeSH(Pref(Location.General, List::class, listOf<SearchHistory>())),
     SortedMangaSH(Pref(Location.General, List::class, listOf<SearchHistory>())),
     SortedCharacterSH(Pref(Location.General, List::class, listOf<SearchHistory>())),
     SortedStaffSH(Pref(Location.General, List::class, listOf<SearchHistory>())),
     SortedStudioSH(Pref(Location.General, List::class, listOf<SearchHistory>())),
     SortedUserSH(Pref(Location.General, List::class, listOf<SearchHistory>())),
-    NovelSourcesOrder(Pref(Location.General, List::class, listOf<String>())),
+    AnimeSourcesOrder(Pref(Location.General, List::class, listOf<String>())),
     CommentNotificationInterval(Pref(Location.General, Int::class, 0)),
     AnilistNotificationInterval(Pref(Location.General, Int::class, 3)),
     SubscriptionNotificationInterval(Pref(Location.General, Int::class, 2)),
@@ -94,7 +94,6 @@ enum class PrefName(val data: Pref) {
     CommentSortOrder(Pref(Location.UI, String::class, "newest")),
     FollowerLayout(Pref(Location.UI, Int::class, 0)),
     ShowNotificationRedDot(Pref(Location.UI, Boolean::class, true)),
-
 
     //Player
     DefaultSpeed(Pref(Location.Player, Int::class, 5)),

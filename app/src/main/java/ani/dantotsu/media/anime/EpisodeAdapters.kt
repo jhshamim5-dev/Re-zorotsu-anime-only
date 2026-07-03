@@ -280,7 +280,6 @@ class EpisodeAdapter(
         }
     }
 
-
     inner class EpisodeCompactViewHolder(val binding: ItemEpisodeCompactBinding) :
         RecyclerView.ViewHolder(binding.root) {
         init {

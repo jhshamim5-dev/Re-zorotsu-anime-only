@@ -22,7 +22,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ani.dantotsu.R
 import ani.dantotsu.Refresh
 import ani.dantotsu.bottomBar
-import ani.dantotsu.connections.anilist.AniMangaSearchResults
+import ani.dantotsu.connections.anilist.AnimeSearchResults
 import ani.dantotsu.connections.anilist.Anilist
 import ani.dantotsu.connections.anilist.AnilistAnimeViewModel
 import ani.dantotsu.connections.anilist.getUserId
@@ -44,7 +44,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlin.math.max
 import kotlin.math.min
-
 
 class AnimeFragment : Fragment() {
     private var _binding: FragmentAnimeBinding? = null
@@ -100,7 +99,7 @@ class AnimeFragment : Fragment() {
         var loading = true
         if (model.notSet) {
             model.notSet = false
-            model.aniMangaSearchResults = AniMangaSearchResults(
+            model.aniMangaSearchResults = AnimeSearchResults(
                 "ANIME",
                 isAdult = false,
                 onList = false,
@@ -244,7 +243,6 @@ class AnimeFragment : Fragment() {
                     -(navBarHeight + (bottomBar?.height ?: 0) + (bottomBar?.marginBottom ?: 0)).toFloat()
             }
         }
-
 
         fun load() = scope.launch(Dispatchers.Main) {
             animePageAdapter.updateAvatar()

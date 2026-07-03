@@ -8,7 +8,6 @@ import ani.dantotsu.INCOGNITO_CHANNEL_ID
 import ani.dantotsu.settings.saving.PrefManager
 import ani.dantotsu.settings.saving.PrefName
 
-
 class IncognitoNotificationClickReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent?) {
 

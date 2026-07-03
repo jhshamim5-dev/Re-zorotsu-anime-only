@@ -29,7 +29,6 @@ class PreferencePackager {
             val rawPrefsMap: Map<String, Map<String, Map<String, Any>>> =
                 gson.fromJson(decryptedJson, type)
 
-
             val deserializedMap = mutableMapOf<String, Map<String, Any?>>()
 
             rawPrefsMap.forEach { (prefName, prefValueMap) ->

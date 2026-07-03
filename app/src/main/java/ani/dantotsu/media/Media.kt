@@ -10,8 +10,7 @@ import ani.dantotsu.connections.anilist.api.MediaType
 import ani.dantotsu.connections.anilist.api.Query
 import ani.dantotsu.connections.mal.MAL
 import ani.dantotsu.media.anime.Anime
-import ani.dantotsu.media.manga.Manga
-import ani.dantotsu.profile.User
+// removed: // removed: import ani.dantotsu.profile.User
 import ani.dantotsu.settings.saving.PrefManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -22,7 +21,7 @@ import ani.dantotsu.connections.anilist.api.Media as ApiMedia
 
 data class Media(
     val anime: Anime? = null,
-    val manga: Manga? = null,
+    val manga: String? = null,
     val id: Int,
 
     var idMAL: Int? = null,

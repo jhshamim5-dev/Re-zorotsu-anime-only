@@ -48,7 +48,6 @@ import kotlin.math.abs
 import androidx.activity.viewModels
 import ani.dantotsu.connections.anilist.ProfileViewModel
 
-
 class ProfileActivity : AppCompatActivity(), AppBarLayout.OnOffsetChangedListener {
     private val model: ProfileViewModel by viewModels()
     lateinit var binding: ActivityProfileBinding
@@ -225,7 +224,6 @@ class ProfileActivity : AppCompatActivity(), AppBarLayout.OnOffsetChangedListene
                     mMaxScrollSize = profileAppBar.totalScrollRange
                     profileAppBar.addOnOffsetChangedListener(context)
 
-
                     profileFollowerCount.text =
                         (respond.data.followerPage?.pageInfo?.total ?: 0).toString()
                     profileFollowerCountContainer.setOnClickListener {
@@ -355,5 +353,4 @@ class ProfileActivity : AppCompatActivity(), AppBarLayout.OnOffsetChangedListene
         }
     }
 }
-
 

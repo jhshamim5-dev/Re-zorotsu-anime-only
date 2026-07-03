@@ -53,7 +53,6 @@ class CalcStack {
             values.push(applyOp(val1, val2, op))
         }
 
-
         val ans = values.pop()
         expression = ans.toString()
         return ans
@@ -77,7 +76,6 @@ class CalcStack {
     fun getExpression(): String {
         return expression
     }
-
 
     private fun precedence(op: Char): Int {
         return when (op) {

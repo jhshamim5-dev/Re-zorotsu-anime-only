@@ -19,7 +19,6 @@ object Discord {
     var userid: String? = null
     var avatar: String? = null
 
-
     fun getSavedToken(): Boolean {
         token = PrefManager.getVal(
             PrefName.DiscordToken, null as String?
@@ -42,7 +41,6 @@ object Discord {
     }
 
     private var rpc: RPC? = null
-
 
     fun warning(context: Context) = CustomBottomDialog().apply {
         title = context.getString(R.string.warning)

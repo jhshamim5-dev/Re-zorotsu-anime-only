@@ -2,7 +2,6 @@ package ani.dantotsu.settings.saving.internal
 
 import kotlin.reflect.KClass
 
-
 data class Pref(
     val prefLocation: Location,
     val type: KClass<*>,

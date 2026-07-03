@@ -24,4 +24,3 @@ data class Episode(
     val sEpisode: eu.kanade.tachiyomi.animesource.model.SEpisode? = null
 ) : Serializable
 
-

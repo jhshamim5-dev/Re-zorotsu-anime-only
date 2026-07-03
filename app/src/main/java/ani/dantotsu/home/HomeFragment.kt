@@ -57,7 +57,6 @@ import kotlinx.coroutines.withContext
 import kotlin.math.max
 import kotlin.math.min
 
-
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -96,7 +95,6 @@ class HomeFragment : Fragment() {
                 binding.homeNotificationCount.isVisible = Anilist.unreadNotificationCount > 0
                         && PrefManager.getVal<Boolean>(PrefName.ShowNotificationRedDot) == true
                 binding.homeNotificationCount.text = Anilist.unreadNotificationCount.toString()
-
 
                 binding.homeAnimeList.setOnClickListener {
                     ContextCompat.startActivity(
@@ -448,7 +446,6 @@ class HomeFragment : Fragment() {
                 (binding.homeDantotsuIcon.drawable as? Animatable)?.start()
             }
         }
-
 
         val array = arrayOf(
             "AnimeContinue",

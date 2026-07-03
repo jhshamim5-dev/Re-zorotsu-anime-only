@@ -14,7 +14,7 @@ class SubscriptionNotificationReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent?) {
         Logger.log("SubscriptionNotificationReceiver: onReceive")
         runBlocking {
-            SubscriptionNotificationTask().execute(context)
+            // removed: /* removed: SubscriptionNotificationWorker */().execute(context)
         }
         val subscriptionInterval =
             SubscriptionNotificationWorker.checkIntervals[PrefManager.getVal(PrefName.SubscriptionNotificationInterval)]

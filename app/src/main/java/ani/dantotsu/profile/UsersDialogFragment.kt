@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ani.dantotsu.BottomSheetDialogFragment
 import ani.dantotsu.databinding.BottomSheetUsersBinding
 
-
 class UsersDialogFragment : BottomSheetDialogFragment() {
     private var _binding: BottomSheetUsersBinding? = null
     private val binding get() = _binding!!

@@ -14,7 +14,6 @@ import ani.dantotsu.settings.saving.PrefName
 import com.google.android.material.color.DynamicColors
 import com.google.android.material.color.DynamicColorsOptions
 
-
 class ThemeManager(private val context: Activity) {
     fun applyTheme(fromImage: Bitmap? = null) {
         val useOLED = PrefManager.getVal(PrefName.UseOLED) && isDarkThemeActive(context)
@@ -127,7 +126,6 @@ class ThemeManager(private val context: Activity) {
             else -> false
         }
     }
-
 
     companion object {
         enum class Theme(val theme: String) {

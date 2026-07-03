@@ -4,8 +4,8 @@ import android.content.Context
 import ani.dantotsu.FileUrl
 import ani.dantotsu.currContext
 import ani.dantotsu.media.MediaNameAdapter
-import ani.dantotsu.media.manga.ImageData
-import ani.dantotsu.media.manga.MangaCache
+// removed: ImageData
+// removed: // removed: // removed: Object
 import ani.dantotsu.snackString
 import ani.dantotsu.util.Logger
 import eu.kanade.tachiyomi.animesource.AnimeCatalogueSource
@@ -17,8 +17,7 @@ import eu.kanade.tachiyomi.animesource.model.Track
 import eu.kanade.tachiyomi.animesource.model.Video
 import eu.kanade.tachiyomi.animesource.online.AnimeHttpSource
 import eu.kanade.tachiyomi.extension.anime.model.AnimeExtension
-import eu.kanade.tachiyomi.extension.manga.model.MangaExtension
-import eu.kanade.tachiyomi.network.NetworkHelper
+// removed: import eu.kanade.tachiyomi.network.NetworkHelper
 import eu.kanade.tachiyomi.network.interceptor.CloudflareBypassException
 import eu.kanade.tachiyomi.source.anime.getPreferenceKey
 import eu.kanade.tachiyomi.source.model.MangasPage
@@ -234,7 +233,6 @@ class DynamicAnimeParser(extension: AnimeExtension.Installed) : AnimeParser() {
         }
     }
 
-
     override suspend fun getVideoExtractor(server: VideoServer): VideoExtractor {
         return VideoServerPassthrough(server)
     }
@@ -264,7 +262,6 @@ class DynamicAnimeParser(extension: AnimeExtension.Installed) : AnimeParser() {
             emptyList()
         }
     }
-
 
     private fun convertAnimesPageToShowResponse(animesPage: AnimesPage): List<ShowResponse> {
         return animesPage.animes.map { sAnime ->
@@ -316,9 +313,9 @@ class DynamicAnimeParser(extension: AnimeExtension.Installed) : AnimeParser() {
     }
 }
 
-class DynamicMangaParser(extension: MangaExtension.Installed) : MangaParser() {
-    private val mangaCache = Injekt.get<MangaCache>()
-    val extension: MangaExtension.Installed
+class DynamicBaseParser(extension: AnimeExtension.Installed) : BaseParser() {
+    private val mangaCache = Injekt.get<Object>()
+    val extension: AnimeExtension.Installed
     var sourceLanguage = 0
 
     init {
@@ -336,7 +333,7 @@ class DynamicMangaParser(extension: MangaExtension.Installed) : MangaParser() {
         mangaLink: String,
         extra: Map<String, String>?,
         sManga: SManga
-    ): List<MangaChapter> {
+    ): List<Episode> {
         val source = try {
             extension.sources[sourceLanguage]
         } catch (e: Exception) {
@@ -347,7 +344,7 @@ class DynamicMangaParser(extension: MangaExtension.Installed) : MangaParser() {
         return try {
             val res = source.getChapterList(sManga)
             val reversedRes = res.reversed()
-            val chapterList = reversedRes.map { sChapterToMangaChapter(it) }
+            val chapterList = reversedRes.map { sChapterToEpisode(it) }
             chapterList
         } catch (e: Exception) {
             Logger.log("loadChapters Exception: $e")
@@ -355,8 +352,7 @@ class DynamicMangaParser(extension: MangaExtension.Installed) : MangaParser() {
         }
     }
 
-
-    override suspend fun loadImages(chapterLink: String, sChapter: SChapter): List<MangaImage> {
+    override suspend fun loadImages(chapterLink: String, sChapter: SChapter): List<Episode> {
         val source = try {
             extension.sources[sourceLanguage]
         } catch (e: Exception) {
@@ -376,7 +372,7 @@ class DynamicMangaParser(extension: MangaExtension.Installed) : MangaParser() {
                         mangaCache.put(page.imageUrl ?: "", ImageData(page, source))
                         imageDataList += ImageData(page, source)
                         Logger.log("put page: ${page.imageUrl}")
-                        pageToMangaImage(page)
+                        pageToEpisode(page)
                     }
                 }
 
@@ -448,7 +444,6 @@ class DynamicMangaParser(extension: MangaExtension.Installed) : MangaParser() {
         }
     }
 
-
     private fun convertMangasPageToShowResponse(mangasPage: MangasPage): List<ShowResponse> {
         return mangasPage.mangas.map { sManga ->
             // Extract required fields from sManga
@@ -461,7 +456,7 @@ class DynamicMangaParser(extension: MangaExtension.Installed) : MangaParser() {
         }
     }
 
-    private fun pageToMangaImage(page: Page): MangaImage {
+    private fun pageToEpisode(page: Page): Episode {
         var headersMap = mapOf<String, String>()
         var url = ""
 
@@ -485,16 +480,15 @@ class DynamicMangaParser(extension: MangaExtension.Installed) : MangaParser() {
             }.toMap()
         }
 
-        return MangaImage(
+        return Episode(
             FileUrl(url, headersMap),
             false,
             page
         )
     }
 
-
-    private fun sChapterToMangaChapter(sChapter: SChapter): MangaChapter {
-        return MangaChapter(
+    private fun sChapterToEpisode(sChapter: SChapter): Episode {
+        return Episode(
             sChapter.name,
             sChapter.url,
             sChapter.name,
@@ -570,7 +564,6 @@ class VideoServerPassthrough(private val videoServer: VideoServer) : VideoExtrac
         }
         val headersMap: Map<String, String> =
             aniVideo.headers?.toMultimap()?.mapValues { it.value.joinToString() } ?: mapOf()
-
 
         return Video(
             number,

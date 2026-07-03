@@ -160,7 +160,6 @@ import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.pow
 
-
 var statusBarHeight = 0
 var navBarHeight = 0
 val Int.dp: Float get() = (this / getSystem().displayMetrics.density)
@@ -406,7 +405,6 @@ fun startMainActivity(activity: Activity, bundle: Bundle? = null) {
     )
 }
 
-
 class DatePickerFragment(activity: Activity, var date: FuzzyDate = FuzzyDate().getToday()) :
     DialogFragment(),
     DatePickerDialog.OnDateSetListener {
@@ -467,7 +465,6 @@ class InputFilterMinMax(
     }
 }
 
-
 class ZoomOutPageTransformer :
     ViewPager2.PageTransformer {
     override fun transformPage(view: View, position: Float) {
@@ -509,7 +506,6 @@ fun setAnimation(
         viewToAnimate.startAnimation(anim)
     }
 }
-
 
 class FadingEdgeRecyclerView : RecyclerView {
 
@@ -653,7 +649,6 @@ fun ImageView.loadImage(file: FileUrl?, width: Int = 0, height: Int = 0) {
     }
 }
 
-
 fun ImageView.loadLocalImage(file: File?, size: Int = 0) {
     if (file?.exists() == true) {
         tryWith {
@@ -695,7 +690,6 @@ suspend fun getSize(file: FileUrl): Double? {
 suspend fun getSize(file: String): Double? {
     return getSize(FileUrl(file))
 }
-
 
 abstract class GesturesListener : GestureDetector.SimpleOnGestureListener() {
     private var timer: Timer? = null //at class level;
@@ -1246,7 +1240,6 @@ fun brightnessConverter(it: Float, fromLog: Boolean) =
         else it, 0.001f, 1f
     )
 
-
 fun checkCountry(context: Context): Boolean {
     val telMgr = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
     return when (telMgr.simState) {
@@ -1494,7 +1487,6 @@ fun buildMarkwon(
         .build()
     return markwon
 }
-
 
 fun getYoutubeId(url: String): String {
     val regex =

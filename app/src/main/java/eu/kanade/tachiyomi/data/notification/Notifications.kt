@@ -59,7 +59,6 @@ object Notifications {
     const val CHANNEL_COMMENT_WARING = "comment_warning_channel"
     const val ID_COMMENT_REPLY = -801
 
-
     const val CHANNEL_APP_GLOBAL = "app_global"
 
     /**
@@ -77,7 +76,6 @@ object Notifications {
     const val CHANNEL_SUBSCRIPTION_CHECK_PROGRESS = "subscription_check_progress_channel"
     const val ID_SUBSCRIPTION_CHECK = -1001
     const val ID_SUBSCRIPTION_CHECK_PROGRESS = -1002
-
 
     /**
      * Notification channel and ids used for app and extension updates.

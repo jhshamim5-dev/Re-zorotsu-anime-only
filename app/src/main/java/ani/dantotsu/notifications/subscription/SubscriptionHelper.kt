@@ -9,10 +9,7 @@ import ani.dantotsu.parsers.AnimeParser
 import ani.dantotsu.parsers.AnimeSources
 import ani.dantotsu.parsers.BaseParser
 import ani.dantotsu.parsers.Episode
-import ani.dantotsu.parsers.MangaChapter
-import ani.dantotsu.parsers.MangaParser
-import ani.dantotsu.parsers.MangaSources
-import ani.dantotsu.parsers.ShowResponse
+// removed: // removed: // removed: import ani.dantotsu.parsers.ShowResponse
 import ani.dantotsu.settings.saving.PrefManager
 import ani.dantotsu.settings.saving.PrefName
 import ani.dantotsu.toast
@@ -82,9 +79,9 @@ class SubscriptionHelper {
             }
         }
 
-        fun getMangaParser(id: Int): MangaParser {
-            val sources = MangaSources
-            Logger.log("getMangaParser size: ${sources.list.size}")
+        fun getBaseParser(id: Int): BaseParser {
+            val sources = AnimeSources
+            Logger.log("getBaseParser size: ${sources.list.size}")
             val selected = loadSelected(id)
             if (selected.sourceIndex >= sources.list.size) {
                 selected.sourceIndex = 0
@@ -93,9 +90,9 @@ class SubscriptionHelper {
         }
 
         suspend fun getChapter(
-            parser: MangaParser,
+            parser: BaseParser,
             subscribeMedia: SubscribeMedia
-        ): MangaChapter? {
+        ): Episode? {
             val selected = loadSelected(subscribeMedia.id)
             val chp = withTimeoutOrNull(10 * 1000) {
                 tryWithSuspend {

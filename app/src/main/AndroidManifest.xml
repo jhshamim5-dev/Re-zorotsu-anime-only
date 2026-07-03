@@ -108,7 +108,6 @@
         <receiver android:name=".notifications.IncognitoNotificationClickReceiver" />
 
         <activity
-            android:name=".media.novel.novelreader.NovelReaderActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true">
             <intent-filter>
@@ -130,7 +129,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".media.novel.novelreader.NovelTextReaderActivity"
             android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity android:name=".others.calc.CalcActivity"
@@ -233,7 +231,6 @@
             android:name=".profile.SingleStatActivity"
             android:parentActivityName=".profile.ProfileActivity" />
         <activity
-            android:name=".media.manga.mangareader.MangaReaderActivity"
             android:excludeFromRecents="true"
             android:exported="true"
             android:label="@string/manga"

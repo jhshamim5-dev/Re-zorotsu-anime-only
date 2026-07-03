@@ -325,7 +325,6 @@ class ChartBuilder {
                 )
             )
 
-
             aaOptions.chart?.backgroundColor(backgroundStyle.color)
             aaOptions.tooltip?.backgroundColor(
                 AAColor.rgbaColor(

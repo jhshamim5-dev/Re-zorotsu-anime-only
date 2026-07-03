@@ -9,10 +9,10 @@ import ani.dantotsu.addons.download.DownloadAddonManager
 import ani.dantotsu.addons.torrent.TorrentAddonManager
 import ani.dantotsu.media.AddonType
 import ani.dantotsu.media.MediaType
-import ani.dantotsu.parsers.novel.NovelExtensionManager
+// removed: AnimeExtensionManager
 import eu.kanade.tachiyomi.extension.InstallStep
 import eu.kanade.tachiyomi.extension.anime.AnimeExtensionManager
-import eu.kanade.tachiyomi.extension.manga.MangaExtensionManager
+import eu.kanade.tachiyomi.extension.anime.AnimeExtensionManager
 import eu.kanade.tachiyomi.util.system.getSerializableExtraCompat
 import eu.kanade.tachiyomi.util.system.hasMiuiPackageInstaller
 import eu.kanade.tachiyomi.util.system.toast
@@ -98,11 +98,11 @@ class ExtensionInstallActivity : AppCompatActivity() {
                 }
 
                 MediaType.MANGA -> {
-                    Injekt.get<MangaExtensionManager>().updateInstallStep(downloadId, newStep)
+                    Injekt.get<AnimeExtensionManager>().updateInstallStep(downloadId, newStep)
                 }
 
                 else -> {
-                    Injekt.get<NovelExtensionManager>().updateInstallStep(downloadId, newStep)
+                    Injekt.get<AnimeExtensionManager>().updateInstallStep(downloadId, newStep)
                 }
             }
         } else {

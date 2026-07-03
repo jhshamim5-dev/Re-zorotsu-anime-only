@@ -17,7 +17,6 @@ import ani.dantotsu.themes.ThemeManager
 import eu.kanade.tachiyomi.util.system.copyToClipboard
 import java.io.File
 
-
 class CrashActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCrashBinding
     override fun onCreate(savedInstanceState: Bundle?) {

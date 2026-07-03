@@ -54,7 +54,6 @@ import kotlinx.coroutines.launch
 import java.io.Serializable
 import java.net.URLEncoder
 
-
 class MediaInfoFragment : Fragment() {
     private var _binding: FragmentMediaInfoBinding? = null
     private val binding get() = _binding!!
@@ -431,7 +430,6 @@ class MediaInfoFragment : Fragment() {
                         makeText(bind.itemText, media.anime.op)
                         parent.addView(bind.root)
                     }
-
 
                     if (media.anime.ed.isNotEmpty()) {
                         val bind = ItemTitleTextBinding.inflate(

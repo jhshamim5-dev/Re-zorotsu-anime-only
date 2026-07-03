@@ -1,6 +1,5 @@
 package ani.dantotsu.profile
 
-
 import android.text.SpannableString
 import android.view.View
 import androidx.viewbinding.ViewBinding

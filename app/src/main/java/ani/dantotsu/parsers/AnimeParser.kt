@@ -57,7 +57,6 @@ abstract class AnimeParser : BaseParser() {
         sEpisode: SEpisode
     ): List<VideoServer>
 
-
     /**
      * This function will receive **url of the embed** & **name** of a Video Server present on the site to host the episode.
      *
@@ -150,7 +149,6 @@ abstract class AnimeParser : BaseParser() {
             null
         }
     }
-
 
     /**
      * Many sites have Dub & Sub anime as separate Shows

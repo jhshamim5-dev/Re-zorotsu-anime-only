@@ -12,7 +12,6 @@ import ani.dantotsu.databinding.ItemFollowerGridBinding
 import ani.dantotsu.loadImage
 import ani.dantotsu.setAnimation
 
-
 class UsersAdapter(private val user: MutableList<User>, private val grid: Boolean = false) :
     RecyclerView.Adapter<UsersAdapter.UsersViewHolder>() {
 

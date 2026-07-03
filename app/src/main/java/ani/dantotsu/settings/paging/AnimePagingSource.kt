@@ -46,7 +46,6 @@ class AnimeExtensionsViewModelFactory(
     }
 }
 
-
 class AnimeExtensionsViewModel(
     animeExtensionManager: AnimeExtensionManager
 ) : ViewModel() {

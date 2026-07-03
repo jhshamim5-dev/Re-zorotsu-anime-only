@@ -25,7 +25,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.Serializable
 
-
 class MediaListDialogSmallFragment : BottomSheetDialogFragment() {
 
     private lateinit var media: Media
@@ -57,7 +56,6 @@ class MediaListDialogSmallFragment : BottomSheetDialogFragment() {
         _binding = BottomSheetMediaListSmallBinding.inflate(inflater, container, false)
         return binding.root
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.mediaListContainer.updateLayoutParams<ViewGroup.MarginLayoutParams> { bottomMargin += navBarHeight }
@@ -103,7 +101,6 @@ class MediaListDialogSmallFragment : BottomSheetDialogFragment() {
                 statusStrings
             )
         )
-
 
         var total: Int? = null
         binding.mediaListProgress.setText(if (media.userProgress != null) media.userProgress.toString() else "")

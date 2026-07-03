@@ -1,6 +1,5 @@
 package eu.kanade.tachiyomi.animesource.model
 
-
 class SEpisodeImpl : SEpisode {
 
     override lateinit var url: String

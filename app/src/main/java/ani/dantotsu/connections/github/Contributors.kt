@@ -134,7 +134,6 @@ class Contributors {
         return sections.redantotsuDevs + sections.dantotsuDevs
     }
 
-
     @Serializable
     data class GithubResponse(
         @SerialName("login")

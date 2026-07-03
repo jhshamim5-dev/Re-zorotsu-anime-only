@@ -2,7 +2,6 @@
 // please subscribe to my only fans here: https://github.com/brahmkshatriya
 package ani.dantotsu.connections.discord
 
-
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json

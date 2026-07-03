@@ -42,8 +42,8 @@ import ani.dantotsu.initActivity
 import ani.dantotsu.loadImage
 import ani.dantotsu.media.anime.AnimeWatchFragment
 import ani.dantotsu.media.comments.CommentsFragment
-import ani.dantotsu.media.manga.MangaReadFragment
-import ani.dantotsu.media.novel.NovelReadFragment
+// removed: // removed: // removed: AnimeWatchFragment
+// removed: // removed: AnimeWatchFragment
 import ani.dantotsu.navBarHeight
 import ani.dantotsu.openLinkInBrowser
 import ani.dantotsu.others.AndroidBug5497Workaround
@@ -65,7 +65,6 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import ani.dantotsu.widgets.LiquidGlassBottomBar
 import kotlin.math.abs
-
 
 class MediaDetailsActivity : AppCompatActivity(), AppBarLayout.OnOffsetChangedListener {
     lateinit var launcher: LauncherWrapper
@@ -165,7 +164,6 @@ class MediaDetailsActivity : AppCompatActivity(), AppBarLayout.OnOffsetChangedLi
         val viewPager = binding.mediaViewPager
         viewPager.isUserInputEnabled = false
         viewPager.setPageTransformer(ZoomOutPageTransformer())
-
 
         val isDownload = intent.getBooleanExtra("download", false)
         media.selected = model.loadSelected(media, isDownload)
@@ -453,8 +451,8 @@ class MediaDetailsActivity : AppCompatActivity(), AppBarLayout.OnOffsetChangedLi
             0 -> MediaInfoFragment()
             1 -> when (mediaType) {
                 SupportedMedia.ANIME -> AnimeWatchFragment()
-                SupportedMedia.MANGA -> MangaReadFragment()
-                SupportedMedia.NOVEL -> NovelReadFragment()
+                SupportedMedia.MANGA -> AnimeWatchFragment()
+                SupportedMedia.NOVEL -> AnimeWatchFragment()
             }
 
             2 -> {

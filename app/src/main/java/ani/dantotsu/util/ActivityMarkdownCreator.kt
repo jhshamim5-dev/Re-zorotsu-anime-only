@@ -223,7 +223,6 @@ class ActivityMarkdownCreator : AppCompatActivity() {
         }
     }
 
-
     private fun showInputDialog(format: MarkdownFormat, position: Int) {
         val inputLayout = TextInputLayout(this).apply {
             layoutParams = ViewGroup.LayoutParams(

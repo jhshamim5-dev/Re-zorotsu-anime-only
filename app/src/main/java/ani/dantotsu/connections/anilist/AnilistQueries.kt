@@ -681,7 +681,6 @@ class AnilistQueries {
         return returnMap
     }
 
-
     private suspend fun bannerImage(type: String): String? {
         val image = BannerImage(
             PrefManager.getCustomVal("banner_${type}_url", ""),
@@ -775,7 +774,6 @@ class AnilistQueries {
         }
         return sorted
     }
-
 
     suspend fun getGenresAndTags(): Boolean {
         var genres: ArrayList<String>? = PrefManager.getVal<Set<String>>(PrefName.GenresList)
@@ -916,7 +914,7 @@ class AnilistQueries {
         id: Int? = null,
         hd: Boolean = false,
         adultOnly: Boolean = false
-    ): AniMangaSearchResults? {
+    ): AnimeSearchResults? {
         val variables = """{"type":"$type","isAdult":$isAdult
             ${if (adultOnly) ""","isAdult":true""" else ""}
             ${if (onList != null) ""","onList":$onList""" else ""}
@@ -983,7 +981,7 @@ class AnilistQueries {
 
             val pageInfo = response.pageInfo ?: return null
 
-            return AniMangaSearchResults(
+            return AnimeSearchResults(
                 type = type,
                 perPage = perPage,
                 search = search,
@@ -1428,7 +1426,6 @@ Page(page:$page,perPage:50) {
         return studio
     }
 
-
     suspend fun getAuthorDetails(author: Author): Author {
         fun query(page: Int = 0) = """ {
   Staff(id: ${author.id}) {
@@ -1566,7 +1563,6 @@ Page(page:$page,perPage:50) {
             }""".prepare(), force = true
         )
     }
-
 
     suspend fun getNotifications(
         id: Int,

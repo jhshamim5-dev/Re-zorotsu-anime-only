@@ -46,7 +46,6 @@ object AniSkip {
         val episodeLength: Double
     )
 
-
     fun String.getType(): String {
         return when (this) {
             "op" -> "Opening"

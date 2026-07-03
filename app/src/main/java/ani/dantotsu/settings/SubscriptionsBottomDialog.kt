@@ -10,10 +10,10 @@ import ani.dantotsu.BottomSheetDialogFragment
 import ani.dantotsu.R
 import ani.dantotsu.databinding.BottomSheetRecyclerBinding
 import ani.dantotsu.notifications.subscription.SubscriptionHelper
-import ani.dantotsu.parsers.novel.NovelExtensionManager
+// removed: AnimeExtensionManager
 import com.xwray.groupie.GroupieAdapter
 import eu.kanade.tachiyomi.extension.anime.AnimeExtensionManager
-import eu.kanade.tachiyomi.extension.manga.MangaExtensionManager
+import eu.kanade.tachiyomi.extension.anime.AnimeExtensionManager
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
@@ -23,8 +23,8 @@ class SubscriptionsBottomDialog : BottomSheetDialogFragment() {
     private val adapter: GroupieAdapter = GroupieAdapter()
     private var subscriptions: Map<Int, SubscriptionHelper.Companion.SubscribeMedia> = mapOf()
     private val animeExtension: AnimeExtensionManager = Injekt.get()
-    private val mangaExtensions: MangaExtensionManager = Injekt.get()
-    private val novelExtensions: NovelExtensionManager = Injekt.get()
+    private val mangaExtensions: AnimeExtensionManager = Injekt.get()
+    private val novelExtensions: AnimeExtensionManager = Injekt.get()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,7 +48,7 @@ class SubscriptionsBottomDialog : BottomSheetDialogFragment() {
 
         val groupedSubscriptions = subscriptions.values.groupBy {
             if (it.isAnime) SubscriptionHelper.getAnimeParser(it.id).name
-            else SubscriptionHelper.getMangaParser(it.id).name
+            else SubscriptionHelper.getBaseParser(it.id).name
         }
 
         groupedSubscriptions.forEach { (parserName, mediaList) ->

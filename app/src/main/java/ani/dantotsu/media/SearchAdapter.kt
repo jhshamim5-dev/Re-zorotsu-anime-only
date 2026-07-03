@@ -298,7 +298,6 @@ class SearchAdapter(private val activity: SearchActivity, private val type: Sear
             return SearchChipViewHolder(binding)
         }
 
-
         override fun onBindViewHolder(holder: SearchChipViewHolder, position: Int) {
             val chip = chips[position]
             holder.binding.root.apply {

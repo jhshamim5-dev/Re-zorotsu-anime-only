@@ -9,10 +9,10 @@ import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import ani.dantotsu.BottomSheetDialogFragment
 import ani.dantotsu.databinding.BottomSheetExtensionTestSettingsBinding
-import ani.dantotsu.parsers.novel.NovelExtensionManager
+// removed: AnimeExtensionManager
 import com.xwray.groupie.GroupieAdapter
 import eu.kanade.tachiyomi.extension.anime.AnimeExtensionManager
-import eu.kanade.tachiyomi.extension.manga.MangaExtensionManager
+import eu.kanade.tachiyomi.extension.anime.AnimeExtensionManager
 import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
@@ -21,8 +21,8 @@ class ExtensionTestSettingsBottomDialog : BottomSheetDialogFragment() {
     private val binding get() = _binding!!
     private val adapter: GroupieAdapter = GroupieAdapter()
     private val animeExtension: AnimeExtensionManager = Injekt.get()
-    private val mangaExtensions: MangaExtensionManager = Injekt.get()
-    private val novelExtensions: NovelExtensionManager = Injekt.get()
+    private val mangaExtensions: AnimeExtensionManager = Injekt.get()
+    private val novelExtensions: AnimeExtensionManager = Injekt.get()
 
     override fun onCreateView(
         inflater: LayoutInflater,

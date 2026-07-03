@@ -82,12 +82,12 @@ class ExtensionTestItem(
                 }
 
                 "manga" -> {
-                    val extension = extension as MangaParser
+                    val extension = extension as BaseParser
                     runMangaTest(extension)
                 }
 
                 "novel" -> {
-                    val extension = extension as NovelParser
+                    val extension = extension as BaseParser
                     runNovelTest(extension)
                 }
             }
@@ -136,7 +136,7 @@ class ExtensionTestItem(
         done()
     }
 
-    private suspend fun runMangaTest(extension: MangaParser) {
+    private suspend fun runMangaTest(extension: BaseParser) {
         if (testType == "ping") {
             pingResult = extension.ping()
             withContext(Dispatchers.Main) {
@@ -178,7 +178,7 @@ class ExtensionTestItem(
         done()
     }
 
-    private suspend fun runNovelTest(extension: NovelParser) {
+    private suspend fun runNovelTest(extension: BaseParser) {
         if (testType == "ping") {
             withContext(Dispatchers.Main) {
                 pingResult()

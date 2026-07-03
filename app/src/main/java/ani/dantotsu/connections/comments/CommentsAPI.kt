@@ -463,7 +463,6 @@ data class Notification(
     val notificationId: Int
 )
 
-
 @Serializable
 data class AuthResponse(
     @SerialName("authToken")

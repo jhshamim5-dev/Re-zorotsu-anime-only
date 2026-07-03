@@ -77,7 +77,7 @@ class ParserTestActivity : AppCompatActivity() {
                 "manga" -> {
                     ExtensionTestSettingsBottomDialog.extensionsToTest.forEach { name ->
                         val extension =
-                            MangaSources.list.find { source -> source.name == name }?.get?.value
+                            AnimeSources.list.find { source -> source.name == name }?.get?.value
                         extension?.let {
                             extensionsToTest.add(
                                 ExtensionTestItem(
@@ -94,7 +94,7 @@ class ParserTestActivity : AppCompatActivity() {
                 "novel" -> {
                     ExtensionTestSettingsBottomDialog.extensionsToTest.forEach { name ->
                         val extension =
-                            NovelSources.list.find { source -> source.name == name }?.get?.value
+                            AnimeSources.list.find { source -> source.name == name }?.get?.value
                         extension?.let {
                             extensionsToTest.add(
                                 ExtensionTestItem(

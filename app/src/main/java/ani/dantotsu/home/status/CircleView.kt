@@ -32,7 +32,6 @@ class CircleView(context: Context, attrs: AttributeSet?) : View(context, attrs) 
         val totalGapAngle = gapAngle * (parts)
         val totalAngle = 360f - totalGapAngle
 
-
         val primaryColor = context.getThemeColor(com.google.android.material.R.attr.colorPrimary)
         val secondColor = context.getThemeColor(com.google.android.material.R.attr.colorOnPrimary)
 

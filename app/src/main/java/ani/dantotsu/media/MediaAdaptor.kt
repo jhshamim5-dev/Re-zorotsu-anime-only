@@ -39,7 +39,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.Serializable
 
-
 class MediaAdaptor(
     var type: Int,
     private val mediaList: MutableList<Media>?,

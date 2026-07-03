@@ -576,7 +576,6 @@ class CommentsFragment : Fragment() {
         }
     }
 
-
     /**
      * Shows the comment rules dialog
      * Called when the user tries to comment for the first time

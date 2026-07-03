@@ -98,7 +98,6 @@ class AniMarkdown { //istg anilist has the worst api
         fun getFullAniHTML(html: String, textColor: Int): String {
             val basicHtml = getBasicAniHTML(html)
 
-
             val returnHtml = """
             <html>
 <head>

@@ -117,7 +117,6 @@ class LoginFragment : Fragment() {
             }
         }.show()
 
-
     }
 
     private fun restartApp() {

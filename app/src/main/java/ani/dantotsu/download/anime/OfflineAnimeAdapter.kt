@@ -1,6 +1,5 @@
 package ani.dantotsu.download.anime
 
-
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +12,6 @@ import androidx.cardview.widget.CardView
 import ani.dantotsu.R
 import ani.dantotsu.settings.saving.PrefManager
 import ani.dantotsu.settings.saving.PrefName
-
 
 class OfflineAnimeAdapter(
     private val context: Context,

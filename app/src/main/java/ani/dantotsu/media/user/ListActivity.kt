@@ -29,7 +29,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-
 class ListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityListBinding
     private val scope = lifecycleScope

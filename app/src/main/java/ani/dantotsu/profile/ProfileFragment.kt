@@ -35,7 +35,6 @@ import eu.kanade.tachiyomi.util.system.getSerializableCompat
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-
 class ProfileFragment : Fragment() {
     lateinit var binding: FragmentProfileBinding
     private lateinit var activity: ProfileActivity
@@ -104,7 +103,6 @@ class ProfileFragment : Fragment() {
         }
 
         binding.userInfoContainer.isVisible = user.about != null
-
 
         binding.statsEpisodesWatched.text = user.statistics.anime.episodesWatched.toString()
         binding.statsDaysWatched.text =

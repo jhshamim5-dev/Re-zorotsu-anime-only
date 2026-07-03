@@ -99,7 +99,6 @@ class ActivityItemBuilder {
             }
         }
 
-
         fun getDateTime(timestamp: Int): String {
 
             val targetDate = Date(timestamp * 1000L)

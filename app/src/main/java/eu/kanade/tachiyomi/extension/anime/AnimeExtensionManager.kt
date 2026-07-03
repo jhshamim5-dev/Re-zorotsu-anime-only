@@ -49,7 +49,7 @@ class AnimeExtensionManager(
     /**
      * API where all the available anime extensions can be found.
      */
-    private val api = ExtensionGithubApi()
+    private // removed: val api = ExtensionGithubApi()
 
     /**
      * The installer which installs, updates and uninstalls the anime extensions.

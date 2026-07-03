@@ -107,7 +107,6 @@ class ExtensionInstaller(private val context: Context) {
             .doOnUnsubscribe { deleteDownload(pkgName) }
     }
 
-
     /**
      * Returns an observable that polls the given download id for its status every second, as the
      * manager doesn't have any notification system. It'll stop once the download finishes.

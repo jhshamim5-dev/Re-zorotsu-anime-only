@@ -12,18 +12,13 @@ import ani.dantotsu.connections.anilist.Anilist
 import ani.dantotsu.currContext
 import ani.dantotsu.media.anime.Episode
 import ani.dantotsu.media.anime.SelectorDialogFragment
-import ani.dantotsu.media.manga.MangaChapter
+// removed: // removed: // removed: Episode
 import ani.dantotsu.others.AniSkip
 import ani.dantotsu.others.Anify
 import ani.dantotsu.others.Jikan
 import ani.dantotsu.others.Kitsu
 import ani.dantotsu.parsers.AnimeSources
-import ani.dantotsu.parsers.Book
-import ani.dantotsu.parsers.MangaImage
-import ani.dantotsu.parsers.MangaReadSources
-import ani.dantotsu.parsers.MangaSources
-import ani.dantotsu.parsers.NovelSources
-import ani.dantotsu.parsers.ShowResponse
+// removed: // removed: // removed: // removed: // removed: import ani.dantotsu.parsers.ShowResponse
 import ani.dantotsu.parsers.VideoExtractor
 import ani.dantotsu.parsers.WatchSources
 import ani.dantotsu.settings.saving.PrefManager
@@ -43,7 +38,6 @@ class MediaDetailsViewModel : ViewModel() {
         PrefManager.setCustomVal("Selected-$id", data)
     }
 
-
     fun loadSelected(media: Media, isDownload: Boolean = false): Selected {
         val data =
             PrefManager.getNullableCustomVal("Selected-${media.id}", null, Selected::class.java)
@@ -60,11 +54,11 @@ class MediaDetailsViewModel : ViewModel() {
                 }
 
                 media.format == "MANGA" || media.format == "ONE_SHOT" -> {
-                    MangaSources.list.size - 1
+                    AnimeSources.list.size - 1
                 }
 
                 else -> {
-                    NovelSources.list.size - 1
+                    AnimeSources.list.size - 1
                 }
             }
         }
@@ -89,7 +83,6 @@ class MediaDetailsViewModel : ViewModel() {
     }
 
     val responses = MutableLiveData<List<ShowResponse>?>(null)
-
 
     //Anime
     private val kitsuEpisodes: MutableLiveData<Map<String, Episode>> =
@@ -173,7 +166,6 @@ class MediaDetailsViewModel : ViewModel() {
                     ep.allStreams = true
             }
         }
-
 
         if (post) {
             episode.postValue(ep)
@@ -270,15 +262,15 @@ class MediaDetailsViewModel : ViewModel() {
     }
 
     //Manga
-    var mangaReadSources: MangaReadSources? = null
+    var mangaReadSources: AnimeReadSources? = null
 
     private val mangaChapters =
-        MutableLiveData<MutableMap<Int, MutableMap<String, MangaChapter>>>(null)
-    private val mangaLoaded = mutableMapOf<Int, MutableMap<String, MangaChapter>>()
-    fun getMangaChapters(): LiveData<MutableMap<Int, MutableMap<String, MangaChapter>>> =
+        MutableLiveData<MutableMap<Int, MutableMap<String, Episode>>>(null)
+    private val mangaLoaded = mutableMapOf<Int, MutableMap<String, Episode>>()
+    fun getEpisodes(): LiveData<MutableMap<Int, MutableMap<String, Episode>>> =
         mangaChapters
 
-    suspend fun loadMangaChapters(media: Media, i: Int, invalidate: Boolean = false) {
+    suspend fun loadEpisodes(media: Media, i: Int, invalidate: Boolean = false) {
         Logger.log("Loading Manga Chapters : $mangaLoaded")
         if (!mangaLoaded.containsKey(i) || invalidate) tryWithSuspend {
             mangaLoaded[i] =
@@ -287,7 +279,7 @@ class MediaDetailsViewModel : ViewModel() {
         mangaChapters.postValue(mangaLoaded)
     }
 
-    suspend fun overrideMangaChapters(i: Int, source: ShowResponse, id: Int) {
+    suspend fun overrideEpisodes(i: Int, source: ShowResponse, id: Int) {
         mangaReadSources?.saveResponse(i, id, source)
         tryWithSuspend {
             mangaLoaded[i] = mangaReadSources?.loadChapters(i, source) ?: return@tryWithSuspend
@@ -295,10 +287,10 @@ class MediaDetailsViewModel : ViewModel() {
         mangaChapters.postValue(mangaLoaded)
     }
 
-    private val mangaChapter = MutableLiveData<MangaChapter?>(null)
-    fun getMangaChapter(): LiveData<MangaChapter?> = mangaChapter
-    suspend fun loadMangaChapterImages(
-        chapter: MangaChapter,
+    private val mangaChapter = MutableLiveData<Episode?>(null)
+    fun getEpisode(): LiveData<Episode?> = mangaChapter
+    suspend fun loadEpisodeImages(
+        chapter: Episode,
         selected: Selected,
         post: Boolean = true
     ): Boolean {
@@ -313,12 +305,12 @@ class MediaDetailsViewModel : ViewModel() {
         } ?: false
     }
 
-    fun loadTransformation(mangaImage: MangaImage, source: Int): BitmapTransformation? {
+    fun loadTransformation(mangaImage: Episode, source: Int): BitmapTransformation? {
         return if (mangaImage.useTransformation) mangaReadSources?.get(source)
             ?.getTransformation() else null
     }
 
-    val novelSources = NovelSources
+    val novelSources = AnimeSources
     val novelResponses = MutableLiveData<List<ShowResponse>>(null)
     suspend fun searchNovels(query: String, i: Int) {
         val position = if (i >= novelSources.list.size) 0 else i
@@ -349,9 +341,9 @@ class MediaDetailsViewModel : ViewModel() {
     }
 
     private val novelChapters =
-        MutableLiveData<MutableMap<Int, MutableMap<String, MangaChapter>>>(null)
-    private val novelLoaded = mutableMapOf<Int, MutableMap<String, MangaChapter>>()
-    fun getNovelChapters(): LiveData<MutableMap<Int, MutableMap<String, MangaChapter>>> =
+        MutableLiveData<MutableMap<Int, MutableMap<String, Episode>>>(null)
+    private val novelLoaded = mutableMapOf<Int, MutableMap<String, Episode>>()
+    fun getNovelChapters(): LiveData<MutableMap<Int, MutableMap<String, Episode>>> =
         novelChapters
 
     suspend fun loadNovelChapters(media: Media, i: Int, invalidate: Boolean = false) {
@@ -371,8 +363,8 @@ class MediaDetailsViewModel : ViewModel() {
         novelChapters.postValue(novelLoaded)
     }
 
-    private val novelChapter = MutableLiveData<MangaChapter?>(null)
-    fun getNovelChapter(): LiveData<MangaChapter?> = novelChapter
+    private val novelChapter = MutableLiveData<Episode?>(null)
+    fun getNovelChapter(): LiveData<Episode?> = novelChapter
 
     val releaseWatchOrder = MutableLiveData<List<WatchOrderNode>>(emptyList())
     val recommendedWatchOrder = MutableLiveData<List<WatchOrderNode>>(emptyList())
