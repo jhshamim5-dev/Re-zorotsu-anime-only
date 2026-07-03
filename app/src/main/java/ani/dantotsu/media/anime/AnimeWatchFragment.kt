@@ -45,7 +45,6 @@ import ani.dantotsu.media.MediaNameAdapter
 import ani.dantotsu.media.MediaType
 import ani.dantotsu.navBarHeight
 import ani.dantotsu.notifications.subscription.SubscriptionHelper
-import ani.dantotsu.notifications.subscription.// removed: /* removed: SubscriptionHelper.saveSubscriptionAnime */ null
 import ani.dantotsu.others.LanguageMapper
 import ani.dantotsu.parsers.AnimeParser
 import ani.dantotsu.parsers.AnimeSources

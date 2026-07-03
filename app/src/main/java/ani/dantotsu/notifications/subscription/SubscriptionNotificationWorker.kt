@@ -15,7 +15,7 @@ class SubscriptionNotificationWorker(appContext: Context, workerParams: WorkerPa
             return Result.success()
         }
         lastCheck = System.currentTimeMillis()
-        return if (// removed: /* removed: SubscriptionNotificationWorker */().execute(applicationContext)) {
+        return if (SubscriptionNotificationTask().execute(applicationContext)) {
             Result.success()
         } else {
             Logger.log("SubscriptionNotificationWorker: doWork failed")

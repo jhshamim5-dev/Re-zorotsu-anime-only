@@ -17,7 +17,9 @@ import ani.dantotsu.hasNotificationPermission
 import ani.dantotsu.notifications.Task
 import ani.dantotsu.parsers.AnimeSources
 import ani.dantotsu.parsers.Episode
-// removed: // removed: import ani.dantotsu.settings.saving.PrefManager
+import ani.dantotsu.parsers.MangaChapter
+import ani.dantotsu.parsers.MangaSources
+import ani.dantotsu.settings.saving.PrefManager
 import ani.dantotsu.settings.saving.PrefName
 import ani.dantotsu.util.Logger
 import eu.kanade.tachiyomi.data.notification.Notifications.CHANNEL_SUBSCRIPTION_CHECK
@@ -29,7 +31,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class // removed: /* removed: SubscriptionNotificationWorker */ : Task {
+
+class SubscriptionNotificationTask : Task {
     private var currentlyPerforming = false
 
     @SuppressLint("MissingPermission")
@@ -40,13 +43,13 @@ class // removed: /* removed: SubscriptionNotificationWorker */ : Task {
                     PrefManager.init(context)
                     currentlyPerforming = true
                     App.context = context
-                    Logger.log("// removed: /* removed: SubscriptionNotificationWorker */: execute")
+                    Logger.log("SubscriptionNotificationTask: execute")
                     var timeout = 15_000L
                     do {
                         delay(1000)
                         timeout -= 1000
-                    } while (timeout > 0 && !AnimeSources.isInitialized && !AnimeSources.isInitialized)
-                    Logger.log("// removed: /* removed: SubscriptionNotificationWorker */: timeout: $timeout")
+                    } while (timeout > 0 && !AnimeSources.isInitialized && !MangaSources.isInitialized)
+                    Logger.log("SubscriptionNotificationTask: timeout: $timeout")
                     if (timeout <= 0) {
                         currentlyPerforming = false
                         return@withContext
@@ -105,9 +108,9 @@ class // removed: /* removed: SubscriptionNotificationWorker */ : Task {
                             else null
                         } else {
                             val parser =
-                                SubscriptionHelper.getBaseParser(media.id)
+                                SubscriptionHelper.getMangaParser(media.id)
                             progress(index[it.first]!!, parser.name, media.name)
-                            val ep: Episode? =
+                            val ep: MangaChapter? =
                                 SubscriptionHelper.getChapter(
                                     parser,
                                     media
@@ -151,7 +154,7 @@ class // removed: /* removed: SubscriptionNotificationWorker */ : Task {
                 }
                 return true
             } catch (e: Exception) {
-                Logger.log("// removed: /* removed: SubscriptionNotificationWorker */: ${e.message}")
+                Logger.log("SubscriptionNotificationTask: ${e.message}")
                 Logger.log(e)
                 return false
             }
@@ -211,6 +214,7 @@ class // removed: /* removed: SubscriptionNotificationWorker */ : Task {
             null
         }
     }
+
 
     private fun getIntent(context: Context, mediaId: Int): PendingIntent {
         val notifyIntent = Intent(context, UrlMedia::class.java)
